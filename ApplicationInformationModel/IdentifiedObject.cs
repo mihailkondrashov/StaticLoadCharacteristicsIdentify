@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 
 namespace ApplicationInformationModel
 {
@@ -39,6 +40,12 @@ namespace ApplicationInformationModel
 
         public IdentifiedObject(Guid mRid, string name)
         {
+            #region Checking Input Arguments
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Name of object mustn`t be null", nameof(name));
+            }
+            #endregion
             this.MRID = mRid;
             this.Name = name;
         }
