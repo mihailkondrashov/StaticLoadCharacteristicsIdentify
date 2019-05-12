@@ -60,10 +60,10 @@ namespace ApplicationInformationModel
         public double QVoltageExponent { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructor of a class StaticLoadCharacteristic
         /// </summary>
-        /// <param name="mRid"></param>
-        /// <param name="name"></param>
+        /// <param name="mRid">A Model Authority issues mRIDs</param>
+        /// <param name="name">The name is a free text human readable name of the object</param>
         public StaticLoadCharacteristic(Guid mRid, string name) : base(mRid, name)
         {
         }
