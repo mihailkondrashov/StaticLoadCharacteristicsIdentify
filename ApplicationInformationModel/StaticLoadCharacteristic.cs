@@ -2,10 +2,13 @@
 
 namespace ApplicationInformationModel
 {
+    /// <summary>
+    /// Models the characteristic response of the load demand due to to changes in system conditions such as voltage and frequency
+    /// </summary>
     public class StaticLoadCharacteristic : IdentifiedObject
     {
         /// <summary>
-        ///  Indicates the exponential voltage dependency model (pVoltateExponent and qVoltageExponent) is to be used
+        ///  Indicates the exponential voltage dependency model (pVoltateExponent and qVoltageExponent) is to be used. Default is false
         /// </summary>
         public bool ExponentModel { get; } = false;
 
@@ -72,11 +75,11 @@ namespace ApplicationInformationModel
             #region Checking Input Arguments
             if (qFrequencyExponent > 1 || qFrequencyExponent < 0)
             {
-                throw new ArgumentNullException("qFrequencyExponent mustn`t be less 0 or more 1", nameof(qFrequencyExponent));
+                throw new ArgumentOutOfRangeException("qFrequencyExponent mustn`t be less than 0 or more than 1", nameof(qFrequencyExponent));
             }
             if (pFrequencyExponent > 1 || pFrequencyExponent < 0)
             {
-                throw new ArgumentNullException("pFrequencyExponent mustn`t be less 0 or more 1", nameof(pFrequencyExponent));
+                throw new ArgumentOutOfRangeException("pFrequencyExponent mustn`t be less than 0 or more than 1", nameof(pFrequencyExponent));
             }
             #endregion
 
@@ -113,27 +116,35 @@ namespace ApplicationInformationModel
             #region Checking Input Arguments
             if (pConstantCurrent > 1 || pConstantCurrent < 0)
             {
-                throw new ArgumentNullException("pConstantCurrent mustn`t be less 0 or more 1", nameof(pConstantCurrent));
+                throw new ArgumentOutOfRangeException("pConstantCurrent mustn`t be less than 0 or more than 1", nameof(pConstantCurrent));
             }
             if (pConstantImpendance > 1 || pConstantImpendance < 0)
             {
-                throw new ArgumentNullException("pConstantImpendance mustn`t be less 0 or more 1", nameof(pConstantImpendance));
+                throw new ArgumentOutOfRangeException("pConstantImpendance mustn`t be less than 0 or more than 1", nameof(pConstantImpendance));
             }
             if (pConstantPower > 1 || pConstantPower < 0)
             {
-                throw new ArgumentNullException("pConstantPower mustn`t be less 0 or more 1", nameof(pConstantPower));
+                throw new ArgumentOutOfRangeException("pConstantPower mustn`t be less than 0 or more than 1", nameof(pConstantPower));
             }
             if (qConstantCurrent > 1 || qConstantCurrent < 0)
             {
-                throw new ArgumentNullException("qConstantCurrent mustn`t be less 0 or more 1", nameof(qConstantCurrent));
+                throw new ArgumentOutOfRangeException("qConstantCurrent mustn`t be less than 0 or more than 1", nameof(qConstantCurrent));
             }
             if (qConstantImpendance > 1 || qConstantImpendance < 0)
             {
-                throw new ArgumentNullException("qConstantImpendance mustn`t be less 0 or more 1", nameof(qConstantImpendance));
+                throw new ArgumentOutOfRangeException("qConstantImpendance mustn`t be less than 0 or more than 1", nameof(qConstantImpendance));
             }
             if (qConstantPower > 1 || qConstantPower < 0)
             {
-                throw new ArgumentNullException("qConstantPower mustn`t be less 0 or more 1", nameof(qConstantPower));
+                throw new ArgumentOutOfRangeException("qConstantPower mustn`t be less than 0 or more than 1", nameof(qConstantPower));
+            }
+            if ((pConstantCurrent + pConstantImpendance + pConstantPower) - 1 > 0.005)
+            {
+                throw new ArgumentException("Sum of coefficients pConstantCurrent, pConstantImpendance and pConstantPower must be equal to 1",nameof(pConstantCurrent));
+            }
+            if ((qConstantCurrent + qConstantImpendance + qConstantPower) - 1 > 0.005)
+            {
+                throw new ArgumentException("Sum of coefficients qConstantCurrent, qConstantImpendance and qConstantPower must be equal to 1", nameof(qConstantCurrent));
             }
             #endregion
 
@@ -156,11 +167,11 @@ namespace ApplicationInformationModel
             #region Checking Input Arguments
             if (pVoltageExponent > 1 || pVoltageExponent < 0)
             {
-                throw new ArgumentNullException("pVoltageExponent mustn`t be less 0 or more 1", nameof(pVoltageExponent));
+                throw new ArgumentOutOfRangeException("pVoltageExponent mustn`t be less than 0 or more than 1", nameof(pVoltageExponent));
             }
             if (qVoltageExponent > 1 || qVoltageExponent < 0)
             {
-                throw new ArgumentNullException("qVoltageExponent mustn`t be less 0 or more 1", nameof(qVoltageExponent));
+                throw new ArgumentOutOfRangeException("qVoltageExponent mustn`t be less than 0 or more than 1", nameof(qVoltageExponent));
             }
             #endregion
 

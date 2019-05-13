@@ -40,7 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analog.cs" />
+    <Compile Include="AnalogValue.cs" />
+    <Compile Include="EnergyConsumer.cs" />
     <Compile Include="IdentifiedObject.cs" />
+    <Compile Include="Measurement.cs" />
+    <Compile Include="MeasurementValue.cs" />
+    <Compile Include="MeasurementValueSource.cs" />
     <Compile Include="StaticLoadCharacteristic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
