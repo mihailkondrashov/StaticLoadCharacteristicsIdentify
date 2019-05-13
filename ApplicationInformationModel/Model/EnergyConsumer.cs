@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
     /// Generic user of energy - a point of consumption on the power system model
@@ -10,27 +13,32 @@ namespace ApplicationInformationModel
         /// <summary>
         /// Number of individual customers represented by this Demand
         /// </summary>
-        public int CustomerCount { get; }
+        public int CustomerCount { get; set; }
 
         /// <summary>
         /// Active power of the load that is a fixed quantity
         /// </summary>
-        public double Pfixed { get;  }
+        public double Pfixed { get; set; }
 
         /// <summary>
         /// Fixed active power as per cent of load group fixed active power
         /// </summary>
-        public double PfixedPct { get;  }
+        public double PfixedPct { get; set; }
 
         /// <summary>
         /// Reactive power of the load that is a fixed quantity
         /// </summary>
-        public double Qfixed { get;  }
+        public double Qfixed { get; set; }
 
         /// <summary>
         /// Fixed reactive power as per cent of load group fixed reactive power.
         /// </summary>
-        public double QfixedPct { get;  }
+        public double QfixedPct { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual ICollection<StaticLoadCharacteristic> StaticLoadCharacteristics { get; set; }
 
         /// <summary>
         /// Constructor of class EnergyConsumer
@@ -81,6 +89,7 @@ namespace ApplicationInformationModel
 
             this.Pfixed = pfixed;
             this.Qfixed = qfixed;
+            this.CustomerCount = customerCount;
         }
     }
 }

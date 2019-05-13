@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
     /// A Measurement represents any measured, calculated or non-measured non-calculated quantity

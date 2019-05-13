@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ApplicationInformationModel.IdentifiedObject">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAACAQAAAABAAAAAAAAAAIAgAA=</HashCode>
+      <FileName>IdentifiedObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.Measurement">
+    <Position X="6.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Measurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.Analog">
+    <Position X="6.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAgAAAAAAAAAhAAAAAAA=</HashCode>
+      <FileName>Analog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.MeasurementValue">
+    <Position X="9" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MeasurementValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.AnalogValue">
+    <Position X="9" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>AnalogValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.MeasurementValueSource">
+    <Position X="11.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MeasurementValueSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.StaticLoadCharacteristic">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AJAhAAAAAQgAAAAAAABAAACAAAAAAAAAASAAAACAAIA=</HashCode>
+      <FileName>StaticLoadCharacteristic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicationInformationModel.EnergyConsumer">
+    <Position X="3.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAADAAAAACAAAAIAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnergyConsumer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

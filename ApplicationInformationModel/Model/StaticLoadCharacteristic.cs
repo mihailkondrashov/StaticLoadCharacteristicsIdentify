@@ -1,6 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
     /// Models the characteristic response of the load demand due to to changes in system conditions such as voltage and frequency
@@ -63,6 +64,11 @@ namespace ApplicationInformationModel
         public double QVoltageExponent { get; set; }
 
         /// <summary>
+        /// Generic user of energy - a point of consumption on the power system model
+        /// </summary>
+        public virtual EnergyConsumer EnergyConsumer { get; set; }
+
+        /// <summary>
         /// Constructor of a class StaticLoadCharacteristic
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>
@@ -87,31 +93,17 @@ namespace ApplicationInformationModel
             this.QFrequencyExponent = qFrequencyExponent;
             this.ExponentModel = exponentModel;
         }
-
+        
         /// <summary>
-        /// Constructor of a class StaticLoadCharacteristic
+        /// Adding attributes of class StaticLoadCharacteristic when object has the exponential voltage dependency model (pVoltateExponent and qVoltageExponent)
         /// </summary>
-        /// <param name="mRid">A Model Authority issues mRIDs</param>
-        /// <param name="name">The name is a free text human readable name of the object</param>
         /// <param name="pConstantCurrent">Portion of active power load modeled as constant current</param>
         /// <param name="pConstantImpendance">Portion of active power load modeled as constant impedance</param>
         /// <param name="pConstantPower">Portion of active power load modeled as constant power</param>
         /// <param name="qConstantCurrent">Portion of reactive power load modeled as constant current</param>
         /// <param name="qConstantImpendance">Portion of reactive power load modeled as constant impedance</param>
         /// <param name="qConstantPower">Portion of reactive power load modeled as constant power</param>
-        /// <param name="qFrequencyExponent">Exponent of per unit frequency effecting reactive power</param>
-        /// <param name="pFrequencyExponent">Exponent of per unit frequency effecting active power</param>
-        public StaticLoadCharacteristic(
-            Guid mRid, 
-            string name, 
-            double pConstantCurrent, 
-            double pConstantImpendance, 
-            double pConstantPower,
-            double qConstantCurrent,
-            double qConstantImpendance,
-            double qConstantPower,
-            double qFrequencyExponent,
-            double pFrequencyExponent) : this(mRid, name,qFrequencyExponent,pFrequencyExponent,false)
+        public void SetNewStaticLoadCharacteristicData(double pConstantCurrent, double pConstantImpendance, double pConstantPower, double qConstantCurrent, double qConstantImpendance, double qConstantPower)
         {
             #region Checking Input Arguments
             if (pConstantCurrent > 1 || pConstantCurrent < 0)
@@ -156,14 +148,13 @@ namespace ApplicationInformationModel
             this.QConstantPower      = qConstantPower;
         }
 
-        public StaticLoadCharacteristic(
-           Guid mRid,
-           string name,
-           double pVoltageExponent,
-           double qVoltageExponent,
-           double qFrequencyExponent,
-           double pFrequencyExponent) : this(mRid, name, qFrequencyExponent, pFrequencyExponent, true)
-        {
+        /// <summary>
+        /// Adding attributes of class StaticLoadCharacteristic when object hasn`t the exponential voltage dependency model (pVoltateExponent and qVoltageExponent)
+        /// </summary>
+        /// <param name="pVoltageExponent">Exponent of per unit voltage effecting real power</param>
+        /// <param name="qVoltageExponent">Exponent of per unit voltage effecting reactive power</param>
+        public void SetNewStaticLoadCharacteristicData(double pVoltageExponent,double qVoltageExponent)
+        { 
             #region Checking Input Arguments
             if (pVoltageExponent > 1 || pVoltageExponent < 0)
             {
@@ -178,5 +169,27 @@ namespace ApplicationInformationModel
             this.PVoltageExponent = pVoltageExponent;
             this.QVoltageExponent = qVoltageExponent;
         }
+
+        /// <summary>
+        /// Getting object of class EnergyConsumer, that has this object of class StaticLoadCharacteristic
+        /// </summary>
+        /// <returns>Generic user of energy - a point of consumption on the power system model</returns>
+        public EnergyConsumer GetEnergyConsumer()
+        {
+            return EnergyConsumer;
+        }
+
+        /// <summary>
+        /// Setting object of class EnergyConsumer
+        /// </summary>
+        public void SetEnergyConsumer(EnergyConsumer energyConsumer)
+        {
+            if (energyConsumer is EnergyConsumer)
+            {
+                this.EnergyConsumer = energyConsumer;
+            }
+        }
+
+        
     }
 }

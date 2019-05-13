@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
     /// Analog represents an analog Measurement

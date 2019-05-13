@@ -1,10 +1,11 @@
 ﻿using System;
 using System.CodeDom;
+using System.ComponentModel.DataAnnotations;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
-    /// 
+    /// This is a root class to provide common naming attributes for all classes needing naming attributes
     /// </summary>
     public abstract class IdentifiedObject
     {
@@ -23,21 +24,27 @@ namespace ApplicationInformationModel
         /// </summary>
         public string LocalName { get; set; } = String.Empty;
 
+        [Key]
         /// <summary>
         /// A Model Authority issues mRIDs
         /// </summary>
-        public Guid MRID { get; }
+        public Guid MRID { get; set; }
 
         /// <summary>
         /// The name is a free text human readable name of the object
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         ///  The pathname is a system unique name composed from all IdentifiedObject.localNames in a naming hierarchy path from the object to the root
         /// </summary>
         public string PathName { get; set; } = String.Empty;
 
+        /// <summary>
+        /// Constructor of class IdentifiedObject
+        /// </summary>
+        /// <param name="mRid">A Model Authority issues mRIDs</param>
+        /// <param name="name">The name is a free text human readable name of the object</param>
         public IdentifiedObject(Guid mRid, string name)
         {
             #region Checking Input Arguments
@@ -48,6 +55,11 @@ namespace ApplicationInformationModel
             #endregion
             this.MRID = mRid;
             this.Name = name;
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }

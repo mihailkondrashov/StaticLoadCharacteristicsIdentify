@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
     /// MeasurementValueSource describes the alternative sources updating a MeasurementValue

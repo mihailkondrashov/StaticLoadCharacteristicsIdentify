@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApplicationInformationModel
+namespace ApplicationInformationModel.Model
 {
     /// <summary>
     /// The current state for a measurement
