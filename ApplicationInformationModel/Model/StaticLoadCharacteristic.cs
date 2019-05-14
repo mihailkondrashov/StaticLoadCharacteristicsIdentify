@@ -121,30 +121,6 @@ namespace ApplicationInformationModel.Model
         public void SetNewStaticLoadCharacteristicData(double pConstantCurrent, double pConstantImpendance, double pConstantPower, double qConstantCurrent, double qConstantImpendance, double qConstantPower)
         {
             #region Checking Input Arguments
-            if (pConstantCurrent > 1 || pConstantCurrent < 0)
-            {
-                throw new ArgumentOutOfRangeException("pConstantCurrent mustn`t be less than 0 or more than 1", nameof(pConstantCurrent));
-            }
-            if (pConstantImpendance > 1 || pConstantImpendance < 0)
-            {
-                throw new ArgumentOutOfRangeException("pConstantImpendance mustn`t be less than 0 or more than 1", nameof(pConstantImpendance));
-            }
-            if (pConstantPower > 1 || pConstantPower < 0)
-            {
-                throw new ArgumentOutOfRangeException("pConstantPower mustn`t be less than 0 or more than 1", nameof(pConstantPower));
-            }
-            if (qConstantCurrent > 1 || qConstantCurrent < 0)
-            {
-                throw new ArgumentOutOfRangeException("qConstantCurrent mustn`t be less than 0 or more than 1", nameof(qConstantCurrent));
-            }
-            if (qConstantImpendance > 1 || qConstantImpendance < 0)
-            {
-                throw new ArgumentOutOfRangeException("qConstantImpendance mustn`t be less than 0 or more than 1", nameof(qConstantImpendance));
-            }
-            if (qConstantPower > 1 || qConstantPower < 0)
-            {
-                throw new ArgumentOutOfRangeException("qConstantPower mustn`t be less than 0 or more than 1", nameof(qConstantPower));
-            }
             if ((pConstantCurrent + pConstantImpendance + pConstantPower) - 1 > 0.005)
             {
                 throw new ArgumentException("Sum of coefficients pConstantCurrent, pConstantImpendance and pConstantPower must be equal to 1",nameof(pConstantCurrent));
@@ -170,17 +146,6 @@ namespace ApplicationInformationModel.Model
         /// <param name="qVoltageExponent">Exponent of per unit voltage effecting reactive power</param>
         public void SetNewStaticLoadCharacteristicData(double pVoltageExponent,double qVoltageExponent)
         { 
-            #region Checking Input Arguments
-            if (pVoltageExponent > 1 || pVoltageExponent < 0)
-            {
-                throw new ArgumentOutOfRangeException("pVoltageExponent mustn`t be less than 0 or more than 1", nameof(pVoltageExponent));
-            }
-            if (qVoltageExponent > 1 || qVoltageExponent < 0)
-            {
-                throw new ArgumentOutOfRangeException("qVoltageExponent mustn`t be less than 0 or more than 1", nameof(qVoltageExponent));
-            }
-            #endregion
-
             this.PVoltageExponent = pVoltageExponent;
             this.QVoltageExponent = qVoltageExponent;
         }
@@ -205,7 +170,5 @@ namespace ApplicationInformationModel.Model
                 this.EnergyConsumer_MRID = EnergyConsumer.MRID;
             }
         }
-
-        
     }
 }

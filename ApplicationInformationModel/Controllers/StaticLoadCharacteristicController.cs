@@ -92,5 +92,20 @@ namespace ApplicationInformationModel.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<StaticLoadCharacteristic> GetStaticLoadCharacteristics()
+        {
+            List<StaticLoadCharacteristic> list = new List<StaticLoadCharacteristic>();
+
+            using (var db = new ApplicationsContext())
+            {
+                list = db.StaticLoadCharacteristics.Where(s => true).ToList();
+            }
+            return list;
+        }
+
     }
 }

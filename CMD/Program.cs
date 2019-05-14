@@ -13,7 +13,7 @@ namespace CMD
 
             control.SetNewStaticLoadCharacteristicData(1,0,0,1,0,0);
             control.SetEnergyConsumer(energyConsumerController.energyConsumer);
-            
+            var list = control.GetStaticLoadCharacteristics();
         }
     }
 }
