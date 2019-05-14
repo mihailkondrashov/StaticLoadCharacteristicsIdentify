@@ -57,6 +57,11 @@ namespace ApplicationInformationModel.Model
             this.Name = name;
         }
 
+        /// <summary>
+        /// No parameterless constructor of class IdentifiedObject 
+        /// </summary>
+        public IdentifiedObject() { }
+
         public override string ToString()
         {
             return this.Name;

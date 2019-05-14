@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationInformationModel.Model
 {
@@ -64,9 +65,23 @@ namespace ApplicationInformationModel.Model
         public double QVoltageExponent { get; set; }
 
         /// <summary>
+        /// ForeignKey for EnergyConsumer
+        /// </summary>
+        public Guid? EnergyConsumer_MRID { get; set; }
+
+        /// <summary>
+        /// Navigations property for ForeignKey
+        /// </summary>
+        [ForeignKey("EnergyConsumer_MRID")]
+        /// <summary>
         /// Generic user of energy - a point of consumption on the power system model
         /// </summary>
         public virtual EnergyConsumer EnergyConsumer { get; set; }
+
+        /// <summary>
+        /// No parameterless constructor of class StaticLoadCharacteristic
+        /// </summary>
+        public StaticLoadCharacteristic() { }
 
         /// <summary>
         /// Constructor of a class StaticLoadCharacteristic
@@ -187,6 +202,7 @@ namespace ApplicationInformationModel.Model
             if (energyConsumer is EnergyConsumer)
             {
                 this.EnergyConsumer = energyConsumer;
+                this.EnergyConsumer_MRID = EnergyConsumer.MRID;
             }
         }
 
