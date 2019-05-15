@@ -15,6 +15,7 @@ namespace ApplicationInformationModel.Controllers.Tests
         public void SetNewStaticLoadCharacteristicDataTest()
         {
             //Arrange
+            Guid staticLoadCharacteristicMRid = Guid.NewGuid();
             var name = "SetNewStaticLoadCharacteristicDataTest";
             bool exponentModel = false;
             double pFrequencyExponent = 1;
@@ -25,10 +26,10 @@ namespace ApplicationInformationModel.Controllers.Tests
             double QConstantCurrent = -10;
             double QConstantImpendance = 8;
             double QConstantPower = 3;
-            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(name, exponentModel, pFrequencyExponent, qFrequencyExponent);
+            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
             //Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(PConstantCurrent, PConstantImpendance, PConstantPower, QConstantCurrent, QConstantImpendance, QConstantPower);
-            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.Name == name);
+            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.MRID == staticLoadCharacteristicMRid);
             //Assert
             Assert.IsNotNull(list);
             Assert.AreEqual(name,list.Name);
@@ -46,16 +47,17 @@ namespace ApplicationInformationModel.Controllers.Tests
         public void SetNewStaticLoadCharacteristicDataTest1()
         {
             //Arrange
+            Guid staticLoadCharacteristicMRid = Guid.NewGuid();
             var name = "SetNewStaticLoadCharacteristicDataTest1";
             bool exponentModel = true;
             double pFrequencyExponent = 1;
             double qFrequencyExponent = 1;
             double pVoltageExponent = 10;
             double qVoltageExponent = -9;
-            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(name, exponentModel, pFrequencyExponent, qFrequencyExponent);
+            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
             ////Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(pVoltageExponent,qVoltageExponent);
-            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.Name == name);
+            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.MRID == staticLoadCharacteristicMRid);
             ////Assert
             Assert.IsNotNull(list);
             Assert.AreEqual(name, list.Name);
@@ -69,17 +71,19 @@ namespace ApplicationInformationModel.Controllers.Tests
         public void SetEnergyConsumerTest()
         {
             //Arrange
+            Guid staticLoadCharacteristicMRid = Guid.NewGuid();
+            Guid energyConsumerMRid = Guid.NewGuid();
             var name = "SetEnergyConsumerTest";
             bool exponentModel = false;
             double pFrequencyExponent = 1;
             double qFrequencyExponent = 1;
-            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(name, exponentModel, pFrequencyExponent, qFrequencyExponent);
-            var energyConsumerController = new EnergyConsumerController("SetEnergyConsumerTest", 1, 0.5, 0.5, 0.5, 0.5);
+            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
+            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid,"SetEnergyConsumerTest", 1, 0.5, 0.5, 0.5, 0.5);
             //Act
-            staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.energyConsumer);
-            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.Name == name);
+            staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
+            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.MRID == staticLoadCharacteristicMRid);
             //Assert
-            Assert.AreEqual(energyConsumerController.energyConsumer.MRID,list.EnergyConsumer_MRID);
+            Assert.AreEqual(energyConsumerController.CurrentEnergyConsumer.MRID,list.EnergyConsumer_MRID);
         }
     }
 }

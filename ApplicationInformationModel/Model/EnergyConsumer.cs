@@ -36,7 +36,7 @@ namespace ApplicationInformationModel.Model
         public double QfixedPct { get; set; }
 
         /// <summary>
-        /// 
+        /// Collection of object of class StaticLoadCharacteristic
         /// </summary>
         public virtual ICollection<StaticLoadCharacteristic> StaticLoadCharacteristics { get; set; }
 
@@ -51,8 +51,10 @@ namespace ApplicationInformationModel.Model
         /// <param name="mRid">A Model Authority issues mRIDs</param>
         /// <param name="name">The name is a free text human readable name of the object</param>
         /// <param name="customerCount">Number of individual customers represented by this Demand</param>
+        /// <param name="qfixed">Reactive power of the load that is a fixed quantity</param>
         /// <param name="pfixedPct">Fixed active power as per cent of load group fixed active power</param>
         /// <param name="qfixedPct">Fixed reactive power as per cent of load group fixed reactive power</param>
+        /// <param name="pfixed">Active power of the load that is a fixed quantity</param>
         public EnergyConsumer(Guid mRid, string name, int customerCount, double pfixed, double qfixed, double pfixedPct, double qfixedPct) : base(mRid, name)
         {
             #region CheckingInputArguments
@@ -79,7 +81,5 @@ namespace ApplicationInformationModel.Model
             this.PfixedPct = pfixedPct;
             this.QfixedPct = qfixedPct;
         }
-
-        
     }
 }

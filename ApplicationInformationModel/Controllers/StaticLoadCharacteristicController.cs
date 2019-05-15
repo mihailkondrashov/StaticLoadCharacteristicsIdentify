@@ -13,21 +13,22 @@ namespace ApplicationInformationModel.Controllers
         /// <summary>
         /// Currents object of class StaticLoadCharacteristic
         /// </summary>
-        private StaticLoadCharacteristic currentStaticLoadCharacteristic { get; }
+        private StaticLoadCharacteristic CurrentStaticLoadCharacteristic { get; }
 
         /// <summary>
         /// Create new object of class StaticLoadCharacteristic
         /// </summary>
+        /// <param name="mRid">A Model Authority issues mRIDs</param>
         /// <param name="name">The name is a free text human readable name of the object</param>
         /// <param name="exponentModel">Indicates the exponential voltage dependency model (pVoltateExponent and qVoltageExponent) is to be used</param>
         /// <param name="pFrequencyExponent">Exponent of per unit frequency effecting active power</param>
         /// <param name="qFrequencyExponent">Exponent of per unit frequency effecting reactive power</param>
-        public StaticLoadCharacteristicController(string name, bool exponentModel, double pFrequencyExponent, double qFrequencyExponent)
+        public StaticLoadCharacteristicController(Guid mRid, string name, bool exponentModel, double pFrequencyExponent, double qFrequencyExponent)
         {
             using (ApplicationsContext db = new ApplicationsContext())
             {
-                currentStaticLoadCharacteristic = new StaticLoadCharacteristic(Guid.NewGuid(), name, qFrequencyExponent, pFrequencyExponent, exponentModel);
-                db.StaticLoadCharacteristics.Add(currentStaticLoadCharacteristic);
+                CurrentStaticLoadCharacteristic = new StaticLoadCharacteristic(mRid, name, qFrequencyExponent, pFrequencyExponent, exponentModel);
+                db.StaticLoadCharacteristics.Add(CurrentStaticLoadCharacteristic);
                 db.SaveChanges();
             }
         }
@@ -44,12 +45,12 @@ namespace ApplicationInformationModel.Controllers
         public void SetNewStaticLoadCharacteristicData(double pConstantCurrent, double pConstantImpendance, double pConstantPower, double qConstantCurrent, double qConstantImpendance, double qConstantPower)
         {
             #region Checking attribut of ExponentModel
-            if (currentStaticLoadCharacteristic.ExponentModel)
+            if (CurrentStaticLoadCharacteristic.ExponentModel)
             {
                 throw new Exception("This object of class StaticLoadCharacteristic has exponential voltage dependency model (pVoltateExponent and qVoltageExponent)");
             }
             #endregion
-            currentStaticLoadCharacteristic.SetNewStaticLoadCharacteristicData(pConstantCurrent, pConstantImpendance, pConstantPower, qConstantCurrent, qConstantImpendance, qConstantPower);
+            CurrentStaticLoadCharacteristic.SetNewStaticLoadCharacteristicData(pConstantCurrent, pConstantImpendance, pConstantPower, qConstantCurrent, qConstantImpendance, qConstantPower);
             Update();
         }
 
@@ -61,12 +62,12 @@ namespace ApplicationInformationModel.Controllers
         public void SetNewStaticLoadCharacteristicData(double pVoltageExponent, double qVoltageExponent)
         {
             #region Checking attribut of ExponentModel
-            if (!currentStaticLoadCharacteristic.ExponentModel)
+            if (!CurrentStaticLoadCharacteristic.ExponentModel)
             {
                 throw new Exception("This object of class StaticLoadCharacteristic hasn`t exponential voltage dependency model (pVoltateExponent and qVoltageExponent)");
             }
             #endregion
-            currentStaticLoadCharacteristic.SetNewStaticLoadCharacteristicData(pVoltageExponent, qVoltageExponent);
+            CurrentStaticLoadCharacteristic.SetNewStaticLoadCharacteristicData(pVoltageExponent, qVoltageExponent);
             Update();
         }
 
@@ -76,7 +77,7 @@ namespace ApplicationInformationModel.Controllers
         /// <param name="energyConsumer">Object of class EnergyConsumer</param>
         public void SetEnergyConsumer(EnergyConsumer energyConsumer)
         {
-            currentStaticLoadCharacteristic.SetEnergyConsumer(energyConsumer);
+            CurrentStaticLoadCharacteristic.SetEnergyConsumer(energyConsumer);
             Update();
         }
 
@@ -87,15 +88,15 @@ namespace ApplicationInformationModel.Controllers
         {
             using (ApplicationsContext db = new ApplicationsContext())
             {
-                db.StaticLoadCharacteristics.AddOrUpdate(currentStaticLoadCharacteristic);
+                db.StaticLoadCharacteristics.AddOrUpdate(CurrentStaticLoadCharacteristic);
                 db.SaveChanges();
             }
         }
 
         /// <summary>
-        /// 
+        /// Getting full list of object of class StaticLoadCharacteristic
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of object of class StaticLoadCharacteristic</returns>
         public List<StaticLoadCharacteristic> GetStaticLoadCharacteristics()
         {
             List<StaticLoadCharacteristic> list = new List<StaticLoadCharacteristic>();
