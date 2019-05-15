@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ApplicationInformationModel.Model
 {
@@ -7,6 +8,11 @@ namespace ApplicationInformationModel.Model
     /// </summary>
     public class MeasurementValueSource:IdentifiedObject
     {
+        /// <summary>
+        /// Collection of object of class AnalogValue
+        /// </summary>
+        public virtual ICollection<AnalogValue> AnalogValues { get; set; }
+
         /// <summary>
         /// Constructor of class MeasurementValueSource
         /// </summary>

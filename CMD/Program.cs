@@ -2,6 +2,7 @@
 using ApplicationInformationModel.Controllers;
 using ApplicationInformationModel.Model;
 
+
 namespace CMD
 {
     class Program
@@ -14,6 +15,13 @@ namespace CMD
             control.SetNewStaticLoadCharacteristicData(1,10);
             control.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             var list = control.GetStaticLoadCharacteristics();
+            var list1 = energyConsumerController.GetInvolveStaticLoadCharacteristics(energyConsumerController.CurrentEnergyConsumer.MRID);
+
+            var a =energyConsumerController.GetEnergyConsumer(Guid.Parse("9A14F5F7-AB9A-4A5C-B3D9-55A9708A8B8E"));
+
+
+            var analog = new MeasurementController(Guid.NewGuid(),"Analog1","Active Power" ,true,0,5,3);
+            var listOfAnalog = analog.GetInvolveAnalogValues(analog.CurrentAnalog.MRID);
         }
     }
 }

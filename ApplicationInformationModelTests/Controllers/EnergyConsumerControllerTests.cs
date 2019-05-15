@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ApplicationInformationModel.Controllers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApplicationInformationModel.Controllers.Tests
 {
@@ -21,9 +17,9 @@ namespace ApplicationInformationModel.Controllers.Tests
             double qfixed = 1;
             double pfixedPct = 50;
             double qfixedPct = 50;
-
-            var controller = new EnergyConsumerController(mRid,name,customerCount,pfixed,qfixed,pfixedPct,qfixedPct);
-
+            //Act
+            var controller = new EnergyConsumerController(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
+            //Assert
             using (var db = new ApplicationsContext())
             {
                 var energyConsumer = db.EnergyConsumers.First(e => e.MRID == mRid);
@@ -34,6 +30,56 @@ namespace ApplicationInformationModel.Controllers.Tests
                 Assert.AreEqual(energyConsumer.PfixedPct, pfixedPct);
                 Assert.AreEqual(energyConsumer.QfixedPct, qfixedPct);
             }
+        }
+
+        [TestMethod()]
+        public void GetEnergyConsumerTest()
+        {
+            Guid mRid = Guid.NewGuid();
+            string name = "GetEnergyConsumerTest";
+            int customerCount = 10;
+            double pfixed = 1;
+            double qfixed = 1;
+            double pfixedPct = 50;
+            double qfixedPct = 50;
+            //Act
+            var controller = new EnergyConsumerController(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
+            //Assert
+            Assert.AreEqual(controller.GetEnergyConsumer(mRid).MRID,mRid);
+        }
+
+        [TestMethod()]
+        public void GetInvolveStaticLoadCharacteristicsTest()
+        {
+            Guid staticLoadCharacteristicMRid = Guid.NewGuid();
+            Guid energyConsumerMRid = Guid.NewGuid();
+            var name = "SetEnergyConsumerTest";
+            bool exponentModel = false;
+            double pFrequencyExponent = 1;
+            double qFrequencyExponent = 1;
+            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
+            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid, "SetEnergyConsumerTest", 1, 0.5, 0.5, 0.5, 0.5);
+            //Act
+            staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
+            //Assert
+            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics(energyConsumerMRid).First().MRID, staticLoadCharacteristicMRid);
+        }
+
+        [TestMethod()]
+        public void GetInvolveAnalogsTest()
+        {
+            Guid staticLoadCharacteristicMRid = Guid.NewGuid();
+            Guid energyConsumerMRid = Guid.NewGuid();
+            var name = "SetEnergyConsumerTest";
+            bool exponentModel = false;
+            double pFrequencyExponent = 1;
+            double qFrequencyExponent = 1;
+            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
+            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid, "SetEnergyConsumerTest", 1, 0.5, 0.5, 0.5, 0.5);
+            //Act
+            staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
+            //Assert
+            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics(energyConsumerMRid).First().MRID, staticLoadCharacteristicMRid);
         }
     }
 }

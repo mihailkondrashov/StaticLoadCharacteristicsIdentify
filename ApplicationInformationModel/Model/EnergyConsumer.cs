@@ -41,6 +41,11 @@ namespace ApplicationInformationModel.Model
         public virtual ICollection<StaticLoadCharacteristic> StaticLoadCharacteristics { get; set; }
 
         /// <summary>
+        /// Collection of object of class Analog
+        /// </summary>
+        public virtual ICollection<Analog> Analogs { get; set; }
+
+        /// <summary>
         /// No parameterless constructor of class EnergyConsumer
         /// </summary>
         public EnergyConsumer() { }

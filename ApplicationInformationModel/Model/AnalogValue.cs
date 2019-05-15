@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationInformationModel.Model
 {
@@ -11,6 +12,33 @@ namespace ApplicationInformationModel.Model
         /// The value to supervise
         /// </summary>
         public double Value { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid? Analog_MRID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid? MeasurementValueSource_MRID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [ForeignKey("Analog_MRID")]
+        public virtual Analog Analog { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [ForeignKey("MeasurementValueSource_MRID")]
+        public virtual MeasurementValueSource MeasurementValueSource { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AnalogValue() { }
 
         /// <summary>
         /// Constructor of class AnalogValue

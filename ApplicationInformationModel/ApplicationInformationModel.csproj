@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="Controllers\ApplicationsContext.cs" />
     <Compile Include="Controllers\EnergyConsumerController.cs" />
+    <Compile Include="Controllers\MeasurementController.cs" />
+    <Compile Include="Controllers\MeasurementValueController.cs" />
+    <Compile Include="Controllers\MeasurementValueSourceController.cs" />
     <Compile Include="Controllers\StaticLoadCharacteristicController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Analog.cs" />
@@ -58,6 +61,7 @@
     <Compile Include="Model\EnergyConsumer.cs" />
     <Compile Include="Model\IdentifiedObject.cs" />
     <Compile Include="Model\Measurement.cs" />
+    <Compile Include="Model\MeasurementType.cs" />
     <Compile Include="Model\MeasurementValue.cs" />
     <Compile Include="Model\MeasurementValueSource.cs" />
     <Compile Include="Model\StaticLoadCharacteristic.cs" />
@@ -68,7 +72,6 @@
     <None Include="ApplicationInformationModel.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ApplicationInformationModel.Model;
 
 namespace ApplicationInformationModel.Controllers
@@ -30,6 +32,54 @@ namespace ApplicationInformationModel.Controllers
                 CurrentEnergyConsumer = new EnergyConsumer(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
                 db.EnergyConsumers.Add(CurrentEnergyConsumer);
                 db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<StaticLoadCharacteristic> GetInvolveStaticLoadCharacteristics(Guid mRID)
+        {
+            using (var db = new ApplicationsContext())
+            {
+                return db.EnergyConsumers.FirstOrDefault(e=>e.MRID==mRID).StaticLoadCharacteristics.ToList()??null;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public EnergyConsumer GetEnergyConsumer(Guid mRID)
+        {
+            using (var db = new ApplicationsContext())
+            {
+                return db.EnergyConsumers.FirstOrDefault(e => e.MRID == mRID) ?? null;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<EnergyConsumer> GetEnergyConsumers()
+        {
+            using (var db = new ApplicationsContext())
+            {
+                return db.EnergyConsumers.Where(e => true).ToList();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Analog> GetInvolveAnalogs(Guid mRID)
+        {
+            using (var db = new ApplicationsContext())
+            {
+                return db.EnergyConsumers.FirstOrDefault(e => e.MRID == mRID).Analogs.ToList() ?? null;
             }
         }
     }

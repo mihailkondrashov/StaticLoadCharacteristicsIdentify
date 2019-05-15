@@ -17,6 +17,8 @@ namespace ApplicationInformationModel.Model
         /// </summary>
         public DateTime TimeStamp { get; }
 
+        public MeasurementValue() { }
+
         /// <summary>
         /// Constructor of class MeasurementValue
         /// </summary>
@@ -26,7 +28,6 @@ namespace ApplicationInformationModel.Model
         /// <param name="timeStamp">The time when the value was last updated</param>
         public MeasurementValue(Guid mRid, string name, double sensorAccuracy, DateTime timeStamp) : base(mRid, name)
         {
-            //TODO:Checking input argumenties
             this.SensorAccuracy = sensorAccuracy;
             this.TimeStamp = timeStamp;
         }

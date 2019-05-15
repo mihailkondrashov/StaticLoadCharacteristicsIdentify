@@ -5,6 +5,9 @@ namespace ApplicationInformationModel.Controllers
 {
     public class ApplicationsContext : DbContext
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ApplicationsContext(): base("ApplicationDB") { }
 
         /// <summary>
@@ -16,5 +19,25 @@ namespace ApplicationInformationModel.Controllers
         /// 
         /// </summary>
         public DbSet<StaticLoadCharacteristic> StaticLoadCharacteristics { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Analog> Analogs { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<AnalogValue> AnalogValues { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<MeasurementValueSource> MeasurementValueSources { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<MeasurementType> MeasurementTypes { get; set; }
     }
 }
