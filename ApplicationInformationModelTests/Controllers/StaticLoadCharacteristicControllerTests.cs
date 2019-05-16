@@ -25,18 +25,18 @@ namespace ApplicationInformationModel.Controllers.Tests
             var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
             //Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(PConstantCurrent, PConstantImpendance, PConstantPower, QConstantCurrent, QConstantImpendance, QConstantPower);
-            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.MRID == staticLoadCharacteristicMRid);
+            var staticLoadCharacteristic = staticLoadCharacteristicController.GetStaticLoadCharacteristic(staticLoadCharacteristicMRid);
             //Assert
-            Assert.IsNotNull(list);
-            Assert.AreEqual(name,list.Name);
-            Assert.AreEqual(pFrequencyExponent,list.PFrequencyExponent);
-            Assert.AreEqual(qFrequencyExponent, list.QFrequencyExponent);
-            Assert.AreEqual(PConstantCurrent, list.PConstantCurrent);
-            Assert.AreEqual(PConstantImpendance, list.PConstantImpendance);
-            Assert.AreEqual(PConstantPower, list.PConstantPower);
-            Assert.AreEqual(QConstantCurrent, list.QConstantCurrent);
-            Assert.AreEqual(QConstantImpendance, list.QConstantImpendance);
-            Assert.AreEqual(QConstantPower, list.QConstantPower);
+            Assert.IsNotNull(staticLoadCharacteristic);
+            Assert.AreEqual(name,staticLoadCharacteristic.Name);
+            Assert.AreEqual(pFrequencyExponent,staticLoadCharacteristic.PFrequencyExponent);
+            Assert.AreEqual(qFrequencyExponent, staticLoadCharacteristic.QFrequencyExponent);
+            Assert.AreEqual(PConstantCurrent, staticLoadCharacteristic.PConstantCurrent);
+            Assert.AreEqual(PConstantImpendance, staticLoadCharacteristic.PConstantImpendance);
+            Assert.AreEqual(PConstantPower, staticLoadCharacteristic.PConstantPower);
+            Assert.AreEqual(QConstantCurrent, staticLoadCharacteristic.QConstantCurrent);
+            Assert.AreEqual(QConstantImpendance, staticLoadCharacteristic.QConstantImpendance);
+            Assert.AreEqual(QConstantPower, staticLoadCharacteristic.QConstantPower);
         }
 
         [TestMethod()]
@@ -53,7 +53,7 @@ namespace ApplicationInformationModel.Controllers.Tests
             var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
             ////Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(pVoltageExponent,qVoltageExponent);
-            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.MRID == staticLoadCharacteristicMRid);
+            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristic(staticLoadCharacteristicMRid);
             ////Assert
             Assert.IsNotNull(list);
             Assert.AreEqual(name, list.Name);

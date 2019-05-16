@@ -108,5 +108,20 @@ namespace ApplicationInformationModel.Controllers
             return list;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mRID"></param>
+        /// <returns></returns>
+        public StaticLoadCharacteristic GetStaticLoadCharacteristic(Guid mRID)
+        {
+            StaticLoadCharacteristic loadCharacteristic;
+
+            using (var db = new ApplicationsContext())
+            {
+                loadCharacteristic = db.StaticLoadCharacteristics.FirstOrDefault(s => s.MRID==mRID);
+            }
+            return loadCharacteristic;
+        }
     }
 }

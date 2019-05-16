@@ -34,11 +34,11 @@ namespace ApplicationInformationModel.Controllers
             }
         }
 
-        public MeasurementType GetMeasurementType(int Id)
+        public MeasurementType GetMeasurementType(int id)
         {
             using (var db = new ApplicationsContext())
             {
-                return db.MeasurementTypes.FirstOrDefault(t => t.Id == Id);
+                return db.MeasurementTypes.FirstOrDefault(t => t.Id == id);
             }
         }
 
@@ -46,11 +46,11 @@ namespace ApplicationInformationModel.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public Analog GetAnalog(Guid mRID)
+        public Analog GetAnalog(Guid mRid)
         {
             using (var db = new ApplicationsContext())
             {
-                return db.Analogs.FirstOrDefault(e => e.MRID == mRID) ?? null;
+                return db.Analogs.FirstOrDefault(e => e.MRID == mRid);
             }
         }
 

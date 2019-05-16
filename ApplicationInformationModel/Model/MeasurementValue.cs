@@ -10,7 +10,7 @@ namespace ApplicationInformationModel.Model
         /// <summary>
         /// The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under reference conditions
         /// </summary>
-        public double SensorAccuracy { get; }
+        public double SensorAccuracy { get; } = 0.2;
 
         /// <summary>
         /// The time when the value was last updated
@@ -28,8 +28,8 @@ namespace ApplicationInformationModel.Model
         /// <param name="timeStamp">The time when the value was last updated</param>
         public MeasurementValue(Guid mRid, string name, double sensorAccuracy, DateTime timeStamp) : base(mRid, name)
         {
-            this.SensorAccuracy = sensorAccuracy;
-            this.TimeStamp = timeStamp;
+            SensorAccuracy = sensorAccuracy;
+            TimeStamp = timeStamp;
         }
     }
 }

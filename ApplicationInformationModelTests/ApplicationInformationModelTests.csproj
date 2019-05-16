@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Controllers\EnergyConsumerControllerTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests.cs" />
+    <Compile Include="Controllers\MeasurementValueControllerTests.cs" />
+    <Compile Include="Controllers\MeasurementValueSourceControllerTests.cs" />
     <Compile Include="Controllers\StaticLoadCharacteristicControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

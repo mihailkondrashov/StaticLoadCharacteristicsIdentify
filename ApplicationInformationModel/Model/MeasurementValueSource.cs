@@ -14,6 +14,11 @@ namespace ApplicationInformationModel.Model
         public virtual ICollection<AnalogValue> AnalogValues { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public MeasurementValueSource() { }
+
+        /// <summary>
         /// Constructor of class MeasurementValueSource
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>
