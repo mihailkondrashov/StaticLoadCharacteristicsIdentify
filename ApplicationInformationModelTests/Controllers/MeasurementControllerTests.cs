@@ -1,12 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ApplicationInformationModel.Controllers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ApplicationInformationModel.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ApplicationInformationModel.Controllers.Tests
+namespace ApplicationInformationModelTests.Controllers
 {
     [TestClass()]
     public class MeasurementControllerTests
@@ -14,7 +11,7 @@ namespace ApplicationInformationModel.Controllers.Tests
         [TestMethod()]
         public void GetAnalogTest()
         {
-            Guid analog_MRID = Guid.NewGuid();
+            Guid analogMrid = Guid.NewGuid();
             string name = "GetAnalogTest";
             string measurementTypeName = "Active Power";
             bool positiveFlowIn = false;
@@ -22,9 +19,9 @@ namespace ApplicationInformationModel.Controllers.Tests
             double maxValue = 200;
             double normalValue = 100;
 
-            var analogController = new MeasurementController(analog_MRID,name,measurementTypeName,positiveFlowIn,minValue,maxValue,normalValue);
-            var expectedAnalog = analogController.GetAnalog(analog_MRID);
-            Assert.AreEqual(expectedAnalog.MRID, analog_MRID);
+            var analogController = new MeasurementController(analogMrid,name,measurementTypeName,positiveFlowIn,minValue,maxValue,normalValue);
+            var expectedAnalog = analogController.GetAnalogs().FirstOrDefault(a=>a.MRID == analogController.CurrentAnalog.MRID);
+            Assert.AreEqual(expectedAnalog.MRID, analogMrid);
             Assert.AreEqual(analogController.GetMeasurementType(expectedAnalog.MeasurementType_ID).Name, measurementTypeName);
             Assert.AreEqual(expectedAnalog.Name, name);
             Assert.AreEqual(expectedAnalog.PositiveFlowIn, positiveFlowIn);
@@ -36,7 +33,7 @@ namespace ApplicationInformationModel.Controllers.Tests
         [TestMethod()]
         public void GetInvolveAnalogValuesTest()
         {
-            Guid analog_MRID = Guid.NewGuid();
+            Guid analogMrid = Guid.NewGuid();
             string name = "GetInvolveAnalogValuesTest";
             string measurementTypeName = "Reactive Power";
             bool positiveFlowIn = false;
@@ -44,23 +41,45 @@ namespace ApplicationInformationModel.Controllers.Tests
             double maxValue = 300;
             double normalValue = 200;//TODO:добавить проверку на min<=norm<=max
 
-            Guid measurementValue_MRID = Guid.NewGuid();
+            Guid measurementValueMrid = Guid.NewGuid();
             string measurementValue_name = "GetInvolveAnalogValuesTest";
             double sensor = 0.2;
             DateTime date = DateTime.Now;
             double value = 10;
 
-            var analogController = new MeasurementController(analog_MRID, name, measurementTypeName, positiveFlowIn, minValue, maxValue, normalValue);
-            var measurementValueController = new MeasurementValueController(measurementValue_MRID, measurementValue_name, sensor, date, value);
+            var analogController = new MeasurementController(analogMrid, name, measurementTypeName, positiveFlowIn, minValue, maxValue, normalValue);
+            var measurementValueController = new MeasurementValueController(measurementValueMrid, measurementValue_name, sensor, date, value);
             measurementValueController.SetAnalog(analogController.CurrentAnalog);
 
-            Assert.AreEqual(analogController.GetInvolveAnalogValues(analog_MRID).FirstOrDefault(a=>true).MRID, measurementValueController.CurrentAnalogValue.MRID);
+            Assert.AreEqual(analogController.GetInvolveAnalogValues().FirstOrDefault(a=>true).MRID, measurementValueController.CurrentAnalogValue.MRID);
         }
 
         [TestMethod()]
-        public void GetEnergyConsumerTest()
+        public void SetEnergyConsumerTest()
         {
-            Assert.Fail();
+            Guid analogMrid = Guid.NewGuid();
+            string name = "SetEnergyConsumerTest";
+            string measurementTypeName = "Reactive Power";
+            bool positiveFlowIn = false;
+            double minValue = 0;
+            double maxValue = 300;
+            double normalValue = 200;
+
+            Guid mRid = Guid.NewGuid();
+            string name_energy = "SetEnergyConsumerTest";
+            int customerCount = 10;
+            double pfixed = 1;
+            double qfixed = 1;
+            double pfixedPct = 50;
+            double qfixedPct = 50;
+            //Act
+            var controller = new EnergyConsumerController(mRid, name_energy, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
+            var analogController = new MeasurementController(analogMrid, name, measurementTypeName, positiveFlowIn, minValue, maxValue, normalValue);
+
+            analogController.SetEnergyConsumer(controller.CurrentEnergyConsumer);
+
+            Assert.AreEqual(analogController.GetEnergyConsumer().MRID,mRid);
+
         }
     }
 }

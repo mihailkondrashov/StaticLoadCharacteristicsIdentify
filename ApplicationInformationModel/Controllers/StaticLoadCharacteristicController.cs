@@ -99,29 +99,10 @@ namespace ApplicationInformationModel.Controllers
         /// <returns>List of object of class StaticLoadCharacteristic</returns>
         public List<StaticLoadCharacteristic> GetStaticLoadCharacteristics()
         {
-            List<StaticLoadCharacteristic> list = new List<StaticLoadCharacteristic>();
-
             using (var db = new ApplicationsContext())
             {
-                list = db.StaticLoadCharacteristics.Where(s => true).ToList();
+                return db.StaticLoadCharacteristics.Where(s => true).ToList();
             }
-            return list;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mRID"></param>
-        /// <returns></returns>
-        public StaticLoadCharacteristic GetStaticLoadCharacteristic(Guid mRID)
-        {
-            StaticLoadCharacteristic loadCharacteristic;
-
-            using (var db = new ApplicationsContext())
-            {
-                loadCharacteristic = db.StaticLoadCharacteristics.FirstOrDefault(s => s.MRID==mRID);
-            }
-            return loadCharacteristic;
         }
     }
 }

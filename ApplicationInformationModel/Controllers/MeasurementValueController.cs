@@ -61,13 +61,12 @@ namespace ApplicationInformationModel.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="mRid"></param>
         /// <returns></returns>
-        public MeasurementValueSource GetMeasurementValueSource( Guid mRid)
+        public MeasurementValueSource GetMeasurementValueSource()
         {
             using (var db = new ApplicationsContext())
             {
-                return db.MeasurementValueSources.FirstOrDefault(ms => ms.MRID == db.AnalogValues.FirstOrDefault(a => a.MRID == mRid).MeasurementValueSource_MRID);
+                return db.MeasurementValueSources.FirstOrDefault(ms => ms.MRID == db.AnalogValues.FirstOrDefault(a => a.MRID == CurrentAnalogValue.MRID).MeasurementValueSource_MRID);
             }
         }
 
@@ -89,13 +88,12 @@ namespace ApplicationInformationModel.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="mRid"></param>
         /// <returns></returns>
-        public Analog GetAnalog(Guid mRid)
+        public Analog GetAnalog()
         {
             using (var db = new ApplicationsContext())
             {
-                return db.Analogs.FirstOrDefault(ms => ms.MRID == db.AnalogValues.FirstOrDefault(a => a.MRID == mRid).Analog_MRID);
+                return db.Analogs.FirstOrDefault(ms => ms.MRID == db.AnalogValues.FirstOrDefault(a => a.MRID == CurrentAnalogValue.MRID).Analog_MRID);
             }
         }
     }

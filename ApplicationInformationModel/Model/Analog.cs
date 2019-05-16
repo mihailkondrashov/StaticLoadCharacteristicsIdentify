@@ -59,6 +59,18 @@ namespace ApplicationInformationModel.Model
         /// <param name="normalValue">Normal measurement value, e.g., used for percentage calculations</param>
         public Analog(Guid mRid, string name, MeasurementType measurementType, bool positiveFlowIn, double minValue, double maxValue, double normalValue) : base(mRid, name, measurementType)
         {
+            #region Checking Input Arguments
+            if (minValue > normalValue)
+            {
+                throw new ArgumentException("Input argument 'minValue' mustn`t be more than 'nornValue'");
+            }
+
+            if (normalValue > maxValue)
+            {
+                throw new ArgumentException("Input argument 'normValue' mustn`t be more than 'maxValue'");
+            }
+            #endregion
+
             this.PositiveFlowIn = positiveFlowIn;
             this.MaxValue = maxValue;
             this.MinValue = minValue;
@@ -71,10 +83,14 @@ namespace ApplicationInformationModel.Model
         /// <param name="energyConsumer"></param>
         public void SetEnergyConsumer(EnergyConsumer energyConsumer)
         {
-            if (energyConsumer is EnergyConsumer)
+            if (energyConsumer != null)
             {
                 this.EnergyConsumer = energyConsumer;
                 this.EnergyConsumer_MRID = EnergyConsumer.MRID;
+            }
+            else
+            {
+                throw new ArgumentNullException("Input argument 'energyConsumer' mustn`t be a null", nameof(energyConsumer));
             }
         }
     }

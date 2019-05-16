@@ -34,23 +34,16 @@ namespace ApplicationInformationModel.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public MeasurementType GetMeasurementType(int id)
         {
             using (var db = new ApplicationsContext())
             {
                 return db.MeasurementTypes.FirstOrDefault(t => t.Id == id);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public Analog GetAnalog(Guid mRid)
-        {
-            using (var db = new ApplicationsContext())
-            {
-                return db.Analogs.FirstOrDefault(e => e.MRID == mRid);
             }
         }
 
@@ -69,24 +62,35 @@ namespace ApplicationInformationModel.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="mRid"></param>
         /// <returns></returns>
-        public List<AnalogValue> GetInvolveAnalogValues(Guid mRid)
+        public List<AnalogValue> GetInvolveAnalogValues()
         {
             using (var db = new ApplicationsContext())
             {
-                return db.Analogs.FirstOrDefault(a => a.MRID == mRid).AnalogValues.ToList();
+                return db.AnalogValues.Where(a => a.Analog_MRID == CurrentAnalog.MRID).ToList();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="energyConsumer"></param>
+        public void SetEnergyConsumer(EnergyConsumer energyConsumer)
+        {
+            CurrentAnalog.SetEnergyConsumer(energyConsumer);
+            Update();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="energyConsumer"></param>
-        public void GetEnergyConsumer(EnergyConsumer energyConsumer)
+        /// <returns></returns>
+        public EnergyConsumer GetEnergyConsumer()
         {
-            CurrentAnalog.SetEnergyConsumer(energyConsumer);
-            Update();
+            using (ApplicationsContext db = new ApplicationsContext())
+            {
+                return db.EnergyConsumers.FirstOrDefault(e => e.MRID == db.Analogs.FirstOrDefault(a => a.MRID == CurrentAnalog.MRID).EnergyConsumer_MRID);
+            }
         }
 
         /// <summary>

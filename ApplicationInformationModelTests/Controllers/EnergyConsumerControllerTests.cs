@@ -1,8 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Linq;
+using ApplicationInformationModel.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ApplicationInformationModel.Controllers.Tests
+namespace ApplicationInformationModelTests.Controllers
 {
     [TestClass()]
     public class EnergyConsumerControllerTests
@@ -45,7 +46,7 @@ namespace ApplicationInformationModel.Controllers.Tests
             //Act
             var controller = new EnergyConsumerController(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
             //Assert
-            Assert.AreEqual(controller.GetEnergyConsumer(mRid).MRID,mRid);
+            Assert.AreEqual(controller.GetEnergyConsumers().FirstOrDefault(e=>e.MRID== controller.CurrentEnergyConsumer.MRID).MRID,mRid);
         }
 
         [TestMethod()]
@@ -62,7 +63,7 @@ namespace ApplicationInformationModel.Controllers.Tests
             //Act
             staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
-            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics(energyConsumerMRid).First().MRID, staticLoadCharacteristicMRid);
+            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics().First().MRID, staticLoadCharacteristicMRid);
         }
 
         [TestMethod()]
@@ -79,7 +80,7 @@ namespace ApplicationInformationModel.Controllers.Tests
             //Act
             staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
-            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics(energyConsumerMRid).First().MRID, staticLoadCharacteristicMRid);
+            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics().First().MRID, staticLoadCharacteristicMRid);
         }
     }
 }

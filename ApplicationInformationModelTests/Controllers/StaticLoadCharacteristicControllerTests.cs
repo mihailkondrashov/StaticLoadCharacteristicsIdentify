@@ -1,8 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Linq;
+using ApplicationInformationModel.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ApplicationInformationModel.Controllers.Tests
+namespace ApplicationInformationModelTests.Controllers
 {
     [TestClass()]
     public class StaticLoadCharacteristicControllerTests
@@ -25,7 +26,7 @@ namespace ApplicationInformationModel.Controllers.Tests
             var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
             //Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(PConstantCurrent, PConstantImpendance, PConstantPower, QConstantCurrent, QConstantImpendance, QConstantPower);
-            var staticLoadCharacteristic = staticLoadCharacteristicController.GetStaticLoadCharacteristic(staticLoadCharacteristicMRid);
+            var staticLoadCharacteristic = staticLoadCharacteristicController.GetStaticLoadCharacteristics().FirstOrDefault(s=>s.MRID==staticLoadCharacteristicMRid);
             //Assert
             Assert.IsNotNull(staticLoadCharacteristic);
             Assert.AreEqual(name,staticLoadCharacteristic.Name);
@@ -53,7 +54,7 @@ namespace ApplicationInformationModel.Controllers.Tests
             var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
             ////Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(pVoltageExponent,qVoltageExponent);
-            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristic(staticLoadCharacteristicMRid);
+            var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().FirstOrDefault(s => s.MRID == staticLoadCharacteristicMRid);
             ////Assert
             Assert.IsNotNull(list);
             Assert.AreEqual(name, list.Name);
