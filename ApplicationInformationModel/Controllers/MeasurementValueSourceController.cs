@@ -5,18 +5,21 @@ using ApplicationInformationModel.Model;
 
 namespace ApplicationInformationModel.Controllers
 {
+    /// <summary>
+    /// Controller of class MeasurementValueSource
+    /// </summary>
     public class MeasurementValueSourceController
     {
         /// <summary>
-        /// 
+        /// Current object of class MeasurementValueSource
         /// </summary>
         public MeasurementValueSource CurrentMeasurementValueSource { get; }
 
         /// <summary>
-        /// 
+        /// Create new object of class MeasurementValueSource
         /// </summary>
-        /// <param name="mRid"></param>
-        /// <param name="name"></param>
+        /// <param name="mRid">A Model Authority issues mRIDs</param>
+        /// <param name="name">The name is a free text human readable name of the object</param>
         public MeasurementValueSourceController(Guid mRid, string name)
         {
             CurrentMeasurementValueSource = new MeasurementValueSource(mRid,name);
@@ -29,7 +32,7 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting list of objects 0f class MeasurementValueSource
         /// </summary>
         /// <returns></returns>
         public List<MeasurementValueSource> GetMeasurementValueSources()
@@ -41,9 +44,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting list of involve objects of class AnalogValue
         /// </summary>
-        /// <returns></returns>
+        /// <returns>list of involve objects of class AnalogValue</returns>
         public List<AnalogValue> GetInvolveAnalogValues()
         {
             using (var db = new ApplicationsContext())

@@ -14,7 +14,7 @@ namespace ApplicationInformationModel.Model
         public virtual ICollection<AnalogValue> AnalogValues { get; set; }
 
         /// <summary>
-        /// 
+        /// No parametrless constructor of class MeasurementValueSource
         /// </summary>
         public MeasurementValueSource() { }
 

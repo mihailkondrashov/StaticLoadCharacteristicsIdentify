@@ -9,20 +9,20 @@ namespace ApplicationInformationModel.Controllers
     public class MeasurementController
     {
         /// <summary>
-        /// 
+        /// Current object of class Analog
         /// </summary>
         public Analog CurrentAnalog { get; }
 
         /// <summary>
-        /// 
+        /// Create new object of class Analog
         /// </summary>
-        /// <param name="mRid"></param>
-        /// <param name="name"></param>
-        /// <param name="measurementTypeName"></param>
-        /// <param name="positiveFlowIn"></param>
-        /// <param name="minValue"></param>
-        /// <param name="maxValue"></param>
-        /// <param name="normalValue"></param>
+        /// <param name="mRid">A Model Authority issues mRIDs</param>
+        /// <param name="name">The name is a free text human readable name of the object</param>
+        /// <param name="measurementTypeName">Specifies the type of Measurement, e.g. IndoorTemperature, OutDoorTemperature, BusVoltage, GeneratorVoltage, LineFlow etc</param>
+        /// <param name="positiveFlowIn">If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource</param>
+        /// <param name="minValue">Normal value range minimum for any of the MeasurementValue.values</param>
+        /// <param name="maxValue">Normal value range maximum for any of the MeasurementValue.values</param>
+        /// <param name="normalValue">Normal measurement value, e.g., used for percentage calculations</param>
         public MeasurementController(Guid mRid, string name, string measurementTypeName, bool positiveFlowIn, double minValue, double maxValue, double normalValue)
         {
             using (var db = new ApplicationsContext())
@@ -35,9 +35,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting object of class MeasurementType
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Identificator</param>
         /// <returns></returns>
         public MeasurementType GetMeasurementType(int id)
         {
@@ -48,9 +48,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting objects of class Analog
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of objects of class Analog</returns>
         public List<Analog> GetAnalogs()
         {
             using (var db = new ApplicationsContext())
@@ -60,9 +60,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting list of involve objects of class AnalogValue 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>list of involve objects of class AnalogValue</returns>
         public List<AnalogValue> GetInvolveAnalogValues()
         {
             using (var db = new ApplicationsContext())
@@ -70,11 +70,11 @@ namespace ApplicationInformationModel.Controllers
                 return db.AnalogValues.Where(a => a.Analog_MRID == CurrentAnalog.MRID).ToList();
             }
         }
-        
+
         /// <summary>
-        /// 
+        /// Setting object of class of EnergyConsumer
         /// </summary>
-        /// <param name="energyConsumer"></param>
+        /// <param name="energyConsumer">object of class of EnergyConsumer</param>
         public void SetEnergyConsumer(EnergyConsumer energyConsumer)
         {
             CurrentAnalog.SetEnergyConsumer(energyConsumer);
@@ -82,9 +82,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        ///  Getting objects of class EnergyConsumer
         /// </summary>
-        /// <returns></returns>
+        /// <returns>objects of class EnergyConsumer</returns>
         public EnergyConsumer GetEnergyConsumer()
         {
             using (ApplicationsContext db = new ApplicationsContext())

@@ -17,6 +17,9 @@ namespace ApplicationInformationModel.Model
         /// </summary>
         public DateTime TimeStamp { get; }
 
+        /// <summary>
+        /// No parametrless constructor of class MeasurementValue
+        /// </summary>
         public MeasurementValue() { }
 
         /// <summary>

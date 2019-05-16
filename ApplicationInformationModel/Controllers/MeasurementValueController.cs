@@ -9,18 +9,18 @@ namespace ApplicationInformationModel.Controllers
     public class MeasurementValueController
     {
         /// <summary>
-        /// 
+        /// Current object of class AnalogValue
         /// </summary>
         public AnalogValue CurrentAnalogValue { get; }
 
         /// <summary>
-        /// 
+        /// Create new object of AnalogValue
         /// </summary>
-        /// <param name="mRid"></param>
-        /// <param name="name"></param>
-        /// <param name="sensorAccuracy"></param>
-        /// <param name="timeStamp"></param>
-        /// <param name="value"></param>
+        /// <param name="mRid">A Model Authority issues mRID</param>
+        /// <param name="name">The name is a free text human readable name of the object</param>
+        /// <param name="sensorAccuracy">The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under reference conditions</param>
+        /// <param name="timeStamp">The time when the value was last updated</param>
+        /// <param name="value">The value to supervise</param>
         public MeasurementValueController(Guid mRid, string name, double sensorAccuracy, DateTime timeStamp, double value)
         {
             CurrentAnalogValue = new AnalogValue(mRid, name, sensorAccuracy, timeStamp, value);
@@ -32,9 +32,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting list of objects of class AnalogValue
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of objects of class AnalogValue</returns>
         public List<AnalogValue> GetMeasurementValues()
         {
             using (var db = new ApplicationsContext())
@@ -44,9 +44,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Setting object of class measurementValueSource
         /// </summary>
-        /// <param name="measurementValueSource"></param>
+        /// <param name="measurementValueSource">Object of class measurementValueSource</param>
         public void SetMeasurementValueSource(MeasurementValueSource measurementValueSource)
         {
             using (var db = new ApplicationsContext())
@@ -59,9 +59,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting Object of class measurementValueSource
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Object of class measurementValueSource</returns>
         public MeasurementValueSource GetMeasurementValueSource()
         {
             using (var db = new ApplicationsContext())
@@ -71,9 +71,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Setting object of class Analog
         /// </summary>
-        /// <param name="analog"></param>
+        /// <param name="analog">Object of class Analog</param>
         public void SetAnalog(Analog analog)
         {
             using (var db = new ApplicationsContext())
@@ -86,9 +86,9 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Getting object of class Analog
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Object of class Analog</returns>
         public Analog GetAnalog()
         {
             using (var db = new ApplicationsContext())

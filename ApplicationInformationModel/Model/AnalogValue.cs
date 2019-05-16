@@ -14,29 +14,29 @@ namespace ApplicationInformationModel.Model
         public double Value { get; }
 
         /// <summary>
-        /// 
+        /// ForeignKey
         /// </summary>
         public Guid? Analog_MRID { get; set; }
 
         /// <summary>
-        /// 
+        /// ForeignKey
         /// </summary>
         public Guid? MeasurementValueSource_MRID { get; set; }
 
         /// <summary>
-        /// 
+        /// Navigation property 
         /// </summary>
         [ForeignKey("Analog_MRID")]
         public virtual Analog Analog { get; set; }
         
         /// <summary>
-        /// 
+        /// Navigation property 
         /// </summary>
         [ForeignKey("MeasurementValueSource_MRID")]
         public virtual MeasurementValueSource MeasurementValueSource { get; set; }
 
         /// <summary>
-        /// 
+        /// No parametrless constructor of AnalogValue
         /// </summary>
         public AnalogValue() { }
 

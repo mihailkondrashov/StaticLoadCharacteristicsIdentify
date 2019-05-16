@@ -9,12 +9,12 @@ namespace ApplicationInformationModel.Model
     public class Measurement:IdentifiedObject
     {
         /// <summary>
-        /// 
+        /// Idectificator of MeasurementType (ForeignKey)
         /// </summary>
         public int MeasurementType_ID { get; set; }
 
         /// <summary>
-        /// 
+        /// Navigation property
         /// </summary>
         [ForeignKey("MeasurementType_ID")]
         /// <summary>
@@ -22,6 +22,9 @@ namespace ApplicationInformationModel.Model
         /// </summary>
         public MeasurementType MeasurementType { get; set; }
 
+        /// <summary>
+        /// No parametrless contructor of class Measurement
+        /// </summary>
         public Measurement() { }
 
         /// <summary>

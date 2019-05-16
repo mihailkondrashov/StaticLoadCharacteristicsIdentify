@@ -62,6 +62,10 @@ namespace ApplicationInformationModel.Model
         /// </summary>
         public IdentifiedObject() { }
 
+        /// <summary>
+        /// Override method ToString()
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return this.Name;

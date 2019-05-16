@@ -39,7 +39,7 @@ namespace ApplicationInformationModelTests.Controllers
             bool positiveFlowIn = false;
             double minValue = 0;
             double maxValue = 300;
-            double normalValue = 200;//TODO:добавить проверку на min<=norm<=max
+            double normalValue = 200;
 
             Guid measurementValueMrid = Guid.NewGuid();
             string measurementValue_name = "GetInvolveAnalogValuesTest";
@@ -75,11 +75,8 @@ namespace ApplicationInformationModelTests.Controllers
             //Act
             var controller = new EnergyConsumerController(mRid, name_energy, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
             var analogController = new MeasurementController(analogMrid, name, measurementTypeName, positiveFlowIn, minValue, maxValue, normalValue);
-
             analogController.SetEnergyConsumer(controller.CurrentEnergyConsumer);
-
             Assert.AreEqual(analogController.GetEnergyConsumer().MRID,mRid);
-
         }
     }
 }

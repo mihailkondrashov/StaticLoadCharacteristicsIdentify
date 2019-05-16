@@ -45,6 +45,9 @@ namespace ApplicationInformationModel.Model
         /// </summary>
         public virtual ICollection<AnalogValue> AnalogValues { get; set; }
 
+        /// <summary>
+        /// No parameterless constructor of class Analog
+        /// </summary>
         public Analog() { }
 
         /// <summary>
@@ -78,9 +81,9 @@ namespace ApplicationInformationModel.Model
         }
 
         /// <summary>
-        /// 
+        /// Setting involves object of class EnergyConsumer
         /// </summary>
-        /// <param name="energyConsumer"></param>
+        /// <param name="energyConsumer">Object of class EnergyConsumer</param>
         public void SetEnergyConsumer(EnergyConsumer energyConsumer)
         {
             if (energyConsumer != null)
