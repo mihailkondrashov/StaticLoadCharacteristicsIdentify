@@ -11,7 +11,7 @@ namespace ApplicationInformationModel.Model
         /// <summary>
         /// The value to supervise
         /// </summary>
-        public double Value { get; }
+        public double Value { get; set; }
 
         /// <summary>
         /// ForeignKey
