@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using ApplicationInformationModel.Model;
 
@@ -27,11 +28,12 @@ namespace ApplicationInformationModel.Controllers
         /// <param name="name">The name is a free text human readable name of the object</param>
         public MeasurementValueSourceController(Guid mRid, string name)
         {
-            CurrentMeasurementValueSource = new MeasurementValueSource(mRid,name);
+            CurrentMeasurementValueSource = GetMeasurementValueSources().FirstOrDefault(vs => vs.Name == name) ??
+                                            new MeasurementValueSource(mRid, name);
 
             using (var db = new ApplicationsContext())
             {
-                db.MeasurementValueSources.Add(CurrentMeasurementValueSource);
+                db.MeasurementValueSources.AddOrUpdate(CurrentMeasurementValueSource);
                 db.SaveChanges();
             }
         }

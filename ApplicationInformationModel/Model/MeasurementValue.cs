@@ -10,12 +10,12 @@ namespace ApplicationInformationModel.Model
         /// <summary>
         /// The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under reference conditions
         /// </summary>
-        public double SensorAccuracy { get; } = 0.2;
+        public double SensorAccuracy { get; set; } = 0.2;
 
         /// <summary>
         /// The time when the value was last updated
         /// </summary>
-        public DateTime TimeStamp { get; }
+        public DateTime TimeStamp { get; set; }
 
         /// <summary>
         /// No parametrless constructor of class MeasurementValue
