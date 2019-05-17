@@ -16,6 +16,11 @@ namespace ApplicationInformationModel.Controllers
         public MeasurementValueSource CurrentMeasurementValueSource { get; }
 
         /// <summary>
+        /// Defaults constructor
+        /// </summary>
+        public MeasurementValueSourceController() { }
+
+        /// <summary>
         /// Create new object of class MeasurementValueSource
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>

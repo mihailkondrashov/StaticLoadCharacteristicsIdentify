@@ -16,6 +16,11 @@ namespace ApplicationInformationModel.Controllers
         private StaticLoadCharacteristic CurrentStaticLoadCharacteristic { get; }
 
         /// <summary>
+        /// Defalts constructor
+        /// </summary>
+        StaticLoadCharacteristicController() { }
+
+        /// <summary>
         /// Create new object of class StaticLoadCharacteristic
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>

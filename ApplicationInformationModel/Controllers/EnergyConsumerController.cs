@@ -16,6 +16,11 @@ namespace ApplicationInformationModel.Controllers
         public EnergyConsumer CurrentEnergyConsumer { get; }
 
         /// <summary>
+        /// Defaults constructor 
+        /// </summary>
+        public EnergyConsumerController() { }
+
+        /// <summary>
         /// Create new object of Class EnergyConsumer
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>

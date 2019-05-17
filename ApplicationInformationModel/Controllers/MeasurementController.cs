@@ -14,6 +14,11 @@ namespace ApplicationInformationModel.Controllers
         public Analog CurrentAnalog { get; }
 
         /// <summary>
+        /// Defaults constructor
+        /// </summary>
+        public MeasurementController() { }
+
+        /// <summary>
         /// Create new object of class Analog
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>

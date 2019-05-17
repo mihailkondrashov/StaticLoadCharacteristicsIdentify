@@ -14,6 +14,11 @@ namespace ApplicationInformationModel.Controllers
         public AnalogValue CurrentAnalogValue { get; }
 
         /// <summary>
+        /// Defaults constructor
+        /// </summary>
+        public MeasurementValueController() { }
+
+        /// <summary>
         /// Create new object of AnalogValue
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRID</param>
