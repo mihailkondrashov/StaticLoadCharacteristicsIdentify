@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using ApplicationInformationModel.Model;
 
@@ -75,5 +76,39 @@ namespace ApplicationInformationModel.Controllers
                 return db.Analogs.Where(s => s.EnergyConsumer_MRID == CurrentEnergyConsumer.MRID).ToList();
             }
         }
+
+        public void SetSubstation(Substation substation)
+        {
+            CurrentEnergyConsumer.SetSubstation(substation);
+            Update();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Substation GetSubstation()
+        {
+            using (var db = new ApplicationsContext())
+            {
+                return db.Substations.FirstOrDefault(s =>
+                    s.MRID == db.EnergyConsumers.FirstOrDefault(e => e.MRID == CurrentEnergyConsumer.MRID)
+                        .Substation_MRID);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Update()
+        {
+            using (ApplicationsContext db = new ApplicationsContext())
+            {
+                db.EnergyConsumers.AddOrUpdate(CurrentEnergyConsumer);
+                db.SaveChanges();
+            }
+        }
+
+
     }
 }

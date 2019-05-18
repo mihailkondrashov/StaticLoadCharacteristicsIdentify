@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationInformationModel.Model
 {
@@ -34,6 +35,18 @@ namespace ApplicationInformationModel.Model
         /// Fixed reactive power as per cent of load group fixed reactive power.
         /// </summary>
         public double QfixedPct { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid? Substation_MRID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [ForeignKey("Substation_MRID")]
+        public Substation Substation { get; set; }
+
 
         /// <summary>
         /// Collection of object of class StaticLoadCharacteristic
@@ -86,5 +99,16 @@ namespace ApplicationInformationModel.Model
             this.PfixedPct = pfixedPct;
             this.QfixedPct = qfixedPct;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="substation"></param>
+        public void SetSubstation(Substation substation)
+        {
+            Substation_MRID = substation.MRID;
+            Substation = substation;
+        }
+
     }
 }

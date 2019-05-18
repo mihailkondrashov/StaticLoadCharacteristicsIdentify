@@ -58,7 +58,8 @@ namespace ApplicationInformationModel.Controllers
         {
             using (var db = new ApplicationsContext())
             {
-                return db.MeasurementValueSources.FirstOrDefault(a => a.MRID == CurrentMeasurementValueSource.MRID).AnalogValues.ToList();
+                return db.AnalogValues.Where(a => a.MeasurementValueSource_MRID == CurrentMeasurementValueSource.MRID)
+                    .ToList();
             }
         }
     }

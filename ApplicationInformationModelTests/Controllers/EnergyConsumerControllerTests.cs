@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ApplicationInformationModel.Controllers;
+using ApplicationInformationModel.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ApplicationInformationModelTests.Controllers
@@ -81,6 +82,29 @@ namespace ApplicationInformationModelTests.Controllers
             staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
             Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics().First().MRID, staticLoadCharacteristicMRid);
+        }
+
+        [TestMethod()]
+        public void GetSubstationTest()
+        {
+            Guid mRidSubatation = Guid.NewGuid();
+            string nameSubstation = "GetSubstationTest";
+
+            var substation = new SubstationController(mRidSubatation, nameSubstation);
+
+            Guid mRid = Guid.NewGuid();
+            string name = "GetSubstationTest";
+            int customerCount = 10;
+            double pfixed = 1;
+            double qfixed = 1;
+            double pfixedPct = 50;
+            double qfixedPct = 50;
+            //Act
+            var controller = new EnergyConsumerController(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
+            controller.SetSubstation(substation.CurrentSubstation);
+            //Assert
+            Assert.AreEqual(mRidSubatation,controller.GetSubstation().MRID);
+
         }
     }
 }

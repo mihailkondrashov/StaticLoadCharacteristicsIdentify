@@ -39,5 +39,10 @@ namespace ApplicationInformationModel.Controllers
         /// 
         /// </summary>
         public DbSet<MeasurementType> MeasurementTypes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Substation> Substations { get; set; }
     }
 }
