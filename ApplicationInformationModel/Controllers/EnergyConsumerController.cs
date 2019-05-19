@@ -35,8 +35,8 @@ namespace ApplicationInformationModel.Controllers
         {
             using (var db = new ApplicationsContext())
             {
-                CurrentEnergyConsumer = new EnergyConsumer(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
-                db.EnergyConsumers.Add(CurrentEnergyConsumer);
+                CurrentEnergyConsumer = db.EnergyConsumers.FirstOrDefault(e=>e.Name==name) ?? new EnergyConsumer(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
+                db.EnergyConsumers.AddOrUpdate(CurrentEnergyConsumer);
                 db.SaveChanges();
             }
         }

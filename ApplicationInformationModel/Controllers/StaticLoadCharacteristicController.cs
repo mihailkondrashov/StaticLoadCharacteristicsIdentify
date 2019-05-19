@@ -18,7 +18,7 @@ namespace ApplicationInformationModel.Controllers
         /// <summary>
         /// Defalts constructor
         /// </summary>
-        StaticLoadCharacteristicController() { }
+        public StaticLoadCharacteristicController() { }
 
         /// <summary>
         /// Create new object of class StaticLoadCharacteristic
@@ -32,8 +32,8 @@ namespace ApplicationInformationModel.Controllers
         {
             using (ApplicationsContext db = new ApplicationsContext())
             {
-                CurrentStaticLoadCharacteristic = new StaticLoadCharacteristic(mRid, name, qFrequencyExponent, pFrequencyExponent, exponentModel);
-                db.StaticLoadCharacteristics.Add(CurrentStaticLoadCharacteristic);
+                CurrentStaticLoadCharacteristic = db.StaticLoadCharacteristics.First(s=>s.Name==name) ?? new StaticLoadCharacteristic(mRid, name, qFrequencyExponent, pFrequencyExponent, exponentModel);
+                db.StaticLoadCharacteristics.AddOrUpdate(CurrentStaticLoadCharacteristic);
                 db.SaveChanges();
             }
         }
