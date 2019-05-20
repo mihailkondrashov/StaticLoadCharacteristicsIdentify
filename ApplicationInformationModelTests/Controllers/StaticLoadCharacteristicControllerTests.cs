@@ -28,7 +28,6 @@ namespace ApplicationInformationModelTests.Controllers
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(PConstantCurrent, PConstantImpendance, PConstantPower, QConstantCurrent, QConstantImpendance, QConstantPower);
             var staticLoadCharacteristic = staticLoadCharacteristicController.GetStaticLoadCharacteristics().FirstOrDefault(s=>s.MRID==staticLoadCharacteristicMRid);
             //Assert
-            Assert.IsNotNull(staticLoadCharacteristic);
             Assert.AreEqual(name,staticLoadCharacteristic.Name);
             Assert.AreEqual(pFrequencyExponent,staticLoadCharacteristic.PFrequencyExponent);
             Assert.AreEqual(qFrequencyExponent, staticLoadCharacteristic.QFrequencyExponent);

@@ -21,6 +21,15 @@ namespace ApplicationInformationModel.Controllers
         public StaticLoadCharacteristicController() { }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="staticLoadCharacteristic"></param>
+        public StaticLoadCharacteristicController(StaticLoadCharacteristic staticLoadCharacteristic)
+        {
+            CurrentStaticLoadCharacteristic = staticLoadCharacteristic;
+        }
+
+        /// <summary>
         /// Create new object of class StaticLoadCharacteristic
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRIDs</param>
@@ -32,7 +41,7 @@ namespace ApplicationInformationModel.Controllers
         {
             using (ApplicationsContext db = new ApplicationsContext())
             {
-                CurrentStaticLoadCharacteristic = db.StaticLoadCharacteristics.First(s=>s.Name==name) ?? new StaticLoadCharacteristic(mRid, name, qFrequencyExponent, pFrequencyExponent, exponentModel);
+                CurrentStaticLoadCharacteristic = db.StaticLoadCharacteristics.FirstOrDefault(s=>s.Name==name) ?? new StaticLoadCharacteristic(mRid, name, qFrequencyExponent, pFrequencyExponent, exponentModel);
                 db.StaticLoadCharacteristics.AddOrUpdate(CurrentStaticLoadCharacteristic);
                 db.SaveChanges();
             }

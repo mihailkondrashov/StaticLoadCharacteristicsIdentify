@@ -24,7 +24,7 @@ namespace ApplicationInformationModelTests.Controllers
             //Assert
             using (var db = new ApplicationsContext())
             {
-                var energyConsumer = db.EnergyConsumers.First(e => e.MRID == mRid);
+                var energyConsumer = db.EnergyConsumers.First(e => e.Name == name);
                 Assert.AreEqual(energyConsumer.Name,name);
                 Assert.AreEqual(energyConsumer.CustomerCount, customerCount);
                 Assert.AreEqual(energyConsumer.Pfixed, pfixed);
@@ -55,12 +55,12 @@ namespace ApplicationInformationModelTests.Controllers
         {
             Guid staticLoadCharacteristicMRid = Guid.NewGuid();
             Guid energyConsumerMRid = Guid.NewGuid();
-            var name = "SetEnergyConsumerTest";
+            var name = "GetInvolveStaticLoadCharacteristicsTest";
             bool exponentModel = false;
             double pFrequencyExponent = 1;
             double qFrequencyExponent = 1;
             var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
-            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid, "SetEnergyConsumerTest", 1, 0.5, 0.5, 0.5, 0.5);
+            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid, "GetInvolveStaticLoadCharacteristicsTest", 1, 0.5, 0.5, 0.5, 0.5);
             //Act
             staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
@@ -70,18 +70,21 @@ namespace ApplicationInformationModelTests.Controllers
         [TestMethod()]
         public void GetInvolveAnalogsTest()
         {
-            Guid staticLoadCharacteristicMRid = Guid.NewGuid();
             Guid energyConsumerMRid = Guid.NewGuid();
-            var name = "SetEnergyConsumerTest";
-            bool exponentModel = false;
-            double pFrequencyExponent = 1;
-            double qFrequencyExponent = 1;
-            var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
-            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid, "SetEnergyConsumerTest", 1, 0.5, 0.5, 0.5, 0.5);
+            Guid analogMrid = Guid.NewGuid();
+            string name = "GetInvolveAnalogsTest";
+            string measurementTypeName = "Active Power";
+            bool positiveFlowIn = false;
+            double minValue = 0;
+            double maxValue = 200;
+            double normalValue = 100;
+
+            var analogController = new MeasurementController(analogMrid, name, measurementTypeName, positiveFlowIn, minValue, maxValue, normalValue);
+            var energyConsumerController = new EnergyConsumerController(energyConsumerMRid, "GetInvolveAnalogsTest", 1, 0.5, 0.5, 0.5, 0.5);
             //Act
-            staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
+            analogController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
-            Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics().First().MRID, staticLoadCharacteristicMRid);
+            Assert.AreEqual(energyConsumerController.GetInvolveAnalogs().First().MRID, analogMrid);
         }
 
         [TestMethod()]

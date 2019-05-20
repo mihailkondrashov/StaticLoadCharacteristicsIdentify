@@ -19,6 +19,16 @@ namespace ApplicationInformationModel.Controllers
         public MeasurementValueController() { }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="analogValue"></param>
+        public MeasurementValueController(AnalogValue analogValue)
+        {
+            CurrentAnalogValue = analogValue;
+        }
+
+
+        /// <summary>
         /// Create new object of AnalogValue
         /// </summary>
         /// <param name="mRid">A Model Authority issues mRID</param>

@@ -18,6 +18,10 @@ namespace ApplicationInformationModel.Controllers
         /// </summary>
         public SubstationController() { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="substation"></param>
         public SubstationController(Substation substation)
         {
             CurrentSubstation = substation;
