@@ -59,6 +59,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Analog.cs" />
     <Compile Include="Model\AnalogValue.cs" />
+    <Compile Include="Model\DeskretizationValue.cs" />
     <Compile Include="Model\EnergyConsumer.cs" />
     <Compile Include="Model\IdentifiedObject.cs" />
     <Compile Include="Model\Measurement.cs" />
