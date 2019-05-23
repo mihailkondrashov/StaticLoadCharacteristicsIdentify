@@ -44,5 +44,10 @@ namespace ApplicationInformationModel.Controllers
         /// 
         /// </summary>
         public DbSet<Substation> Substations { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<DeskretizationValue> DeskretizationValues { get; set; }
     }
 }

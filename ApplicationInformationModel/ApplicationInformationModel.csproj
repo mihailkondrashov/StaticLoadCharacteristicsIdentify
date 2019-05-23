@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ApplicationsContext.cs" />
+    <Compile Include="Controllers\DeskretizationValueController.cs" />
     <Compile Include="Controllers\EnergyConsumerController.cs" />
     <Compile Include="Controllers\MeasurementController.cs" />
     <Compile Include="Controllers\MeasurementValueController.cs" />
