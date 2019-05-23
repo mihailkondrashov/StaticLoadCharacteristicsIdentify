@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\DeskretizationValueControllerTests.cs" />
     <Compile Include="Controllers\EnergyConsumerControllerTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests.cs" />
     <Compile Include="Controllers\MeasurementValueControllerTests.cs" />
