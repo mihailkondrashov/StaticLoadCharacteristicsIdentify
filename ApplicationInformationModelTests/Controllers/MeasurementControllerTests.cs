@@ -22,7 +22,7 @@ namespace ApplicationInformationModelTests.Controllers
             var analogController = new MeasurementController(analogMrid,name,measurementTypeName,positiveFlowIn,minValue,maxValue,normalValue);
             var expectedAnalog = analogController.GetAnalogs().FirstOrDefault(a=>a.MRID == analogController.CurrentAnalog.MRID);
             Assert.AreEqual(expectedAnalog.MRID, analogMrid);
-            Assert.AreEqual(analogController.GetMeasurementType(expectedAnalog.MeasurementType_ID).Name, measurementTypeName);
+            Assert.AreEqual(analogController.GetMeasurementType().FirstOrDefault(m=>m.Id== expectedAnalog.MeasurementType_ID).Name, measurementTypeName);
             Assert.AreEqual(expectedAnalog.Name, name);
             Assert.AreEqual(expectedAnalog.PositiveFlowIn, positiveFlowIn);
             Assert.AreEqual(expectedAnalog.MinValue, minValue);

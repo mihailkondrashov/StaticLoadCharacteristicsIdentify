@@ -51,13 +51,12 @@ namespace ApplicationInformationModel.Controllers
         /// <summary>
         /// Getting object of class MeasurementType
         /// </summary>
-        /// <param name="id">Identificator</param>
         /// <returns></returns>
-        public MeasurementType GetMeasurementType(int id)
+        public List<MeasurementType> GetMeasurementType()
         {
             using (var db = new ApplicationsContext())
             {
-                return db.MeasurementTypes.FirstOrDefault(t => t.Id == id);
+                return db.MeasurementTypes.Where(t => true).ToList();
             }
         }
 
