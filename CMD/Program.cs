@@ -10,7 +10,6 @@ namespace CMD
     {
         static void Main(string[] args)
         {
-
         }
     }
 }
