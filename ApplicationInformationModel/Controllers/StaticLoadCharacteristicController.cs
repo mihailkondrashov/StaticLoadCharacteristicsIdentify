@@ -118,5 +118,18 @@ namespace ApplicationInformationModel.Controllers
                 return db.StaticLoadCharacteristics.Where(s => true).ToList();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Delete(StaticLoadCharacteristic staticLoadCharacteristic)
+        {
+            using (var db = new ApplicationsContext())
+            {
+                db.StaticLoadCharacteristics.Remove(staticLoadCharacteristic);
+                db.SaveChanges();
+            }
+        }
+
     }
 }
