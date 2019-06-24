@@ -37,6 +37,7 @@ namespace ApplicationInformationModelTests.Controllers
             Assert.AreEqual(QConstantCurrent, staticLoadCharacteristic.QConstantCurrent);
             Assert.AreEqual(QConstantImpendance, staticLoadCharacteristic.QConstantImpendance);
             Assert.AreEqual(QConstantPower, staticLoadCharacteristic.QConstantPower);
+            staticLoadCharacteristicController.Delete(staticLoadCharacteristic);
         }
 
         [TestMethod()]
@@ -51,16 +52,17 @@ namespace ApplicationInformationModelTests.Controllers
             double pVoltageExponent = 10;
             double qVoltageExponent = -9;
             var staticLoadCharacteristicController = new StaticLoadCharacteristicController(staticLoadCharacteristicMRid, name, exponentModel, pFrequencyExponent, qFrequencyExponent);
-            ////Act
+            //Act
             staticLoadCharacteristicController.SetNewStaticLoadCharacteristicData(pVoltageExponent,qVoltageExponent);
             var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().FirstOrDefault(s => s.MRID == staticLoadCharacteristicMRid);
-            ////Assert
+            //Assert
             Assert.IsNotNull(list);
             Assert.AreEqual(name, list.Name);
             Assert.AreEqual(pFrequencyExponent, list.PFrequencyExponent);
             Assert.AreEqual(qFrequencyExponent, list.QFrequencyExponent);
             Assert.AreEqual(pVoltageExponent, list.PVoltageExponent);
             Assert.AreEqual(qVoltageExponent, list.QVoltageExponent);
+            staticLoadCharacteristicController.Delete(list);
         }
 
         [TestMethod()]
