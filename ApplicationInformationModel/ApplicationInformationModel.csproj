@@ -55,6 +55,7 @@
     <Compile Include="Controllers\MeasurementController.cs" />
     <Compile Include="Controllers\MeasurementValueController.cs" />
     <Compile Include="Controllers\MeasurementValueSourceController.cs" />
+    <Compile Include="Controllers\ObjectHasReferenceException.cs" />
     <Compile Include="Controllers\StaticLoadCharacteristicController.cs" />
     <Compile Include="Controllers\SubstationController.cs" />
     <Compile Include="Migrations\Configuration.cs" />

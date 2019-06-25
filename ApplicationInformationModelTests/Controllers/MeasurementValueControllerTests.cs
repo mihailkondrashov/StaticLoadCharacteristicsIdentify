@@ -30,7 +30,8 @@ namespace ApplicationInformationModelTests.Controllers
             Assert.AreEqual(measurementValueController.CurrentAnalogValue.SensorAccuracy, sensor);
             Assert.AreEqual(measurementValueController.CurrentAnalogValue.TimeStamp, date);
             Assert.AreEqual(measurementValueController.CurrentAnalogValue.Value, value);
-
+            measurementValueController.Delete();
+            measurementValueSourcecontroller.Delete();
         }
 
         [TestMethod()]
@@ -55,6 +56,9 @@ namespace ApplicationInformationModelTests.Controllers
             measurementValueController.SetAnalog(analogController.CurrentAnalog);
 
             Assert.AreEqual(analogController.CurrentAnalog.MRID, measurementValueController.GetAnalog().MRID);
+
+            measurementValueController.Delete();
+            analogController.Delete();
         }
     }
 }

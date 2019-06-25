@@ -27,6 +27,8 @@ namespace ApplicationInformationModel.Controllers.Tests
 
             Assert.AreEqual(deskretizationValues.MRID,deskretizationValueMrid);
             Assert.AreEqual(deskretizationValues.Name, measurementValue_name);
+
+            deskretizationValue.Delete();
         }
 
         [TestMethod()]
@@ -49,6 +51,9 @@ namespace ApplicationInformationModel.Controllers.Tests
 
             Assert.AreEqual(deskretizationValues.MRID, deskretizationValueMrid);
             Assert.AreEqual(deskretizationValues.MeasurementValueSource_MRID, measurementValueSourceMrid);
+
+            deskretizationValue.Delete();
+            measurementValueSourceController.Delete();
 
         }
 
@@ -78,6 +83,9 @@ namespace ApplicationInformationModel.Controllers.Tests
 
             Assert.AreEqual(deskretizationValues.MRID, deskretizationValueMrid);
             Assert.AreEqual(deskretizationValues.Analog_MRID, analogMrid);
+
+            deskretizationValue.Delete();
+            analogController.Delete();
         }
     }
 }

@@ -114,5 +114,26 @@ namespace ApplicationInformationModel.Controllers
                 return db.Analogs.FirstOrDefault(ms => ms.MRID == db.DeskretizationValues.FirstOrDefault(a => a.MRID == CurrentDeskretizationValue.MRID).Analog_MRID);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="ObjectHasReferenceException"/>
+        public void Delete()
+        {
+            using (var db = new ApplicationsContext())
+            {
+                db.DeskretizationValues.Attach(CurrentDeskretizationValue);
+                db.DeskretizationValues.Remove(CurrentDeskretizationValue);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    throw new ObjectHasReferenceException($"{this}. The DELETE statement conflicted with the REFERENCE constraint");
+                }
+            }
+        }
     }
 }

@@ -123,12 +123,12 @@ namespace ApplicationInformationModel.Controllers
         /// Deleting object of class StaticLoadCharacteristic
         /// </summary>
         /// <param name="staticLoadCharacteristic">Object of class StaticLoadCharacteristic</param>
-        public void Delete(StaticLoadCharacteristic staticLoadCharacteristic)
+        public void Delete()
         {
             using (var db = new ApplicationsContext())
             {
-                db.StaticLoadCharacteristics.Attach(staticLoadCharacteristic);
-                db.StaticLoadCharacteristics.Remove(staticLoadCharacteristic);
+                db.StaticLoadCharacteristics.Attach(CurrentStaticLoadCharacteristic);
+                db.StaticLoadCharacteristics.Remove(CurrentStaticLoadCharacteristic);
                 db.SaveChanges();
             }
         }

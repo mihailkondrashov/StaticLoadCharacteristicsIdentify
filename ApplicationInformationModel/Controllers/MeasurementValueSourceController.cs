@@ -71,5 +71,27 @@ namespace ApplicationInformationModel.Controllers
                     .ToList();
             }
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="ObjectHasReferenceException"/>
+        public void Delete()
+        {
+            using (var db = new ApplicationsContext())
+            {
+                db.MeasurementValueSources.Attach(CurrentMeasurementValueSource);
+                db.MeasurementValueSources.Remove(CurrentMeasurementValueSource);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    throw new ObjectHasReferenceException($"{this}. The DELETE statement conflicted with the REFERENCE constraint");
+                }
+            }
+        }
     }
 }

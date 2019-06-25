@@ -37,7 +37,7 @@ namespace ApplicationInformationModelTests.Controllers
             Assert.AreEqual(QConstantCurrent, staticLoadCharacteristic.QConstantCurrent);
             Assert.AreEqual(QConstantImpendance, staticLoadCharacteristic.QConstantImpendance);
             Assert.AreEqual(QConstantPower, staticLoadCharacteristic.QConstantPower);
-            staticLoadCharacteristicController.Delete(staticLoadCharacteristic);
+            staticLoadCharacteristicController.Delete();
         }
 
         [TestMethod()]
@@ -62,7 +62,7 @@ namespace ApplicationInformationModelTests.Controllers
             Assert.AreEqual(qFrequencyExponent, list.QFrequencyExponent);
             Assert.AreEqual(pVoltageExponent, list.PVoltageExponent);
             Assert.AreEqual(qVoltageExponent, list.QVoltageExponent);
-            staticLoadCharacteristicController.Delete(list);
+            staticLoadCharacteristicController.Delete();
         }
 
         [TestMethod()]
@@ -82,6 +82,9 @@ namespace ApplicationInformationModelTests.Controllers
             var list = staticLoadCharacteristicController.GetStaticLoadCharacteristics().First(s => s.MRID == staticLoadCharacteristicMRid);
             //Assert
             Assert.AreEqual(energyConsumerController.CurrentEnergyConsumer.MRID,list.EnergyConsumer_MRID);
+            //Deleting rows
+            staticLoadCharacteristicController.Delete();
+            energyConsumerController.Delete();
         }
     }
 }

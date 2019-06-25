@@ -55,11 +55,36 @@ namespace ApplicationInformationModel.Controllers
             }
         }
 
-        public List<EnergyConsumer> GetInvolvEnergyConsumers()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<EnergyConsumer> GetInvolveEnergyConsumers()
         {
             using (var db = new ApplicationsContext())
             {
                 return db.EnergyConsumers.Where(e => e.Substation_MRID == CurrentSubstation.MRID).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Deleting current object Substation
+        /// </summary>
+        /// <exception cref="ObjectHasReferenceException"/>
+        public void Delete()
+        {
+            using (var db = new ApplicationsContext())
+            {
+                db.Substations.Attach(CurrentSubstation);
+                db.Substations.Remove(CurrentSubstation);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                    throw new ObjectHasReferenceException($"{this}. The DELETE statement conflicted with the REFERENCE constraint");
+                }
             }
         }
     }

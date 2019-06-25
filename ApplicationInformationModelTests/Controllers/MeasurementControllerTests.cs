@@ -28,6 +28,8 @@ namespace ApplicationInformationModelTests.Controllers
             Assert.AreEqual(expectedAnalog.MinValue, minValue);
             Assert.AreEqual(expectedAnalog.MaxValue, maxValue);
             Assert.AreEqual(expectedAnalog.NormalValue, normalValue);
+            analogController.Delete();
+
         }
 
         [TestMethod()]
@@ -52,6 +54,8 @@ namespace ApplicationInformationModelTests.Controllers
             measurementValueController.SetAnalog(analogController.CurrentAnalog);
 
             Assert.AreEqual(analogController.GetInvolveAnalogValues().FirstOrDefault(a=>true).MRID, measurementValueController.CurrentAnalogValue.MRID);
+            measurementValueController.Delete();
+            analogController.Delete();
         }
 
         [TestMethod()]
@@ -77,6 +81,10 @@ namespace ApplicationInformationModelTests.Controllers
             var analogController = new MeasurementController(analogMrid, name, measurementTypeName, positiveFlowIn, minValue, maxValue, normalValue);
             analogController.SetEnergyConsumer(controller.CurrentEnergyConsumer);
             Assert.AreEqual(analogController.GetEnergyConsumer().MRID,mRid);
+            analogController.Delete();
+            controller.Delete();
+
+
         }
     }
 }

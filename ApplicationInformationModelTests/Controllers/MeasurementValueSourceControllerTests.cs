@@ -31,6 +31,11 @@ namespace ApplicationInformationModelTests.Controllers
 
             Assert.AreEqual(measurementValueSourceController.GetInvolveAnalogValues().First(a=>a.MRID== measurementValueMrid).MRID, measurementValueMrid);
             Assert.AreEqual(measurementValueSourceController.GetInvolveAnalogValues().First(a => a.MRID == measurementValueMrid1).MRID, measurementValueMrid1);
+
+            new MeasurementValueController(new MeasurementValueController().GetMeasurementValues().FirstOrDefault(a=>a.MRID== measurementValueMrid)).Delete();
+            new MeasurementValueController(new MeasurementValueController().GetMeasurementValues().FirstOrDefault(a => a.MRID == measurementValueMrid1)).Delete();
+            measurementValueSourceController.Delete();
+
         }
     }
 }

@@ -14,12 +14,14 @@ namespace ApplicationInformationModel.Controllers.Tests
         [TestMethod()]
         public void GetSubstationsTest()
         {
-            Guid mRid = Guid.NewGuid();
-            string name = "GetSubstationsTest";
+            var mRid = Guid.NewGuid();
+            const string name = "GetSubstationsTest";
 
             var substation = new SubstationController(mRid,name);
 
-            Assert.AreEqual(mRid, substation.GetSubstations()[0].MRID); 
+            Assert.AreEqual(mRid, substation.GetSubstations().FirstOrDefault(s=>s.MRID==mRid)?.MRID);
+
+            substation.Delete();
         }
     }
 }

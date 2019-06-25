@@ -32,6 +32,7 @@ namespace ApplicationInformationModelTests.Controllers
                 Assert.AreEqual(energyConsumer.PfixedPct, pfixedPct);
                 Assert.AreEqual(energyConsumer.QfixedPct, qfixedPct);
             }
+            controller.Delete();
         }
 
         [TestMethod()]
@@ -48,6 +49,7 @@ namespace ApplicationInformationModelTests.Controllers
             var controller = new EnergyConsumerController(mRid, name, customerCount, pfixed, qfixed, pfixedPct, qfixedPct);
             //Assert
             Assert.AreEqual(controller.GetEnergyConsumers().FirstOrDefault(e=>e.MRID== controller.CurrentEnergyConsumer.MRID).MRID,mRid);
+            controller.Delete();
         }
 
         [TestMethod()]
@@ -65,6 +67,8 @@ namespace ApplicationInformationModelTests.Controllers
             staticLoadCharacteristicController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
             Assert.AreEqual(energyConsumerController.GetInvolveStaticLoadCharacteristics().First().MRID, staticLoadCharacteristicMRid);
+            staticLoadCharacteristicController.Delete();
+            energyConsumerController.Delete();
         }
 
         [TestMethod()]
@@ -85,6 +89,8 @@ namespace ApplicationInformationModelTests.Controllers
             analogController.SetEnergyConsumer(energyConsumerController.CurrentEnergyConsumer);
             //Assert
             Assert.AreEqual(energyConsumerController.GetInvolveAnalogs().First().MRID, analogMrid);
+            analogController.Delete();
+            energyConsumerController.Delete();
         }
 
         [TestMethod()]
@@ -107,6 +113,9 @@ namespace ApplicationInformationModelTests.Controllers
             controller.SetSubstation(substation.CurrentSubstation);
             //Assert
             Assert.AreEqual(mRidSubatation,controller.GetSubstation().MRID);
+            
+            controller.Delete();
+            substation.Delete();
 
         }
     }

@@ -86,6 +86,10 @@ namespace ApplicationInformationModel.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="substation"></param>
         public void SetSubstation(Substation substation)
         {
             CurrentEnergyConsumer.SetSubstation(substation);
@@ -107,7 +111,7 @@ namespace ApplicationInformationModel.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Update current object EnergyConsumer
         /// </summary>
         public void Update()
         {
@@ -118,6 +122,25 @@ namespace ApplicationInformationModel.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Deleting current object EnergyConsumer
+        /// </summary>
+        /// <exception cref="ObjectHasReferenceException"/>
+        public void Delete()
+        {
+            using (var db = new ApplicationsContext())
+            {
+                db.EnergyConsumers.Attach(CurrentEnergyConsumer);
+                db.EnergyConsumers.Remove(CurrentEnergyConsumer);
+                try
+                {
+                  db.SaveChanges();
+                }
+                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                {
+                   throw new ObjectHasReferenceException($"{this}. The DELETE statement conflicted with the REFERENCE constraint");
+                }
+            }
+        }
     }
 }
