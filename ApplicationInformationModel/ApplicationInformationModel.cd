@@ -9,13 +9,19 @@
   </Class>
   <Class Name="ApplicationInformationModel.Model.EnergyConsumer">
     <Position X="0.5" Y="4" Width="2.75" />
+    <Members>
+      <Property Name="Substation_MRID" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAABAAAAAADAAAAACAAAAIAAAABAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAAABDAAAAACAAAAIAAAABAIAABAAAAAAAAA=</HashCode>
       <FileName>Model\EnergyConsumer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ApplicationInformationModel.Model.StaticLoadCharacteristic">
     <Position X="3.75" Y="4" Width="3.75" />
+    <Members>
+      <Property Name="EnergyConsumer_MRID" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AJAhAAAAARgAAAAAAABAAACAAAAAACACASAACACAAIA=</HashCode>
       <FileName>Model\StaticLoadCharacteristic.cs</FileName>
@@ -23,8 +29,11 @@
   </Class>
   <Class Name="ApplicationInformationModel.Model.Measurement">
     <Position X="7.75" Y="4" Width="1.75" />
+    <Members>
+      <Property Name="MeasurementType_ID" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Measurement.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,21 +47,28 @@
   <Class Name="ApplicationInformationModel.Model.MeasurementValueSource">
     <Position X="12.5" Y="4" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\MeasurementValueSource.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ApplicationInformationModel.Model.Analog">
     <Position X="7.75" Y="6.75" Width="1.75" />
+    <Members>
+      <Property Name="EnergyConsumer_MRID" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAgAAAAAAAAAhAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAABgAAAgAAAAAAAAAAgAAAAACAAAhAAAAAAA=</HashCode>
       <FileName>Model\Analog.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ApplicationInformationModel.Model.AnalogValue">
     <Position X="10" Y="6.5" Width="1.75" />
+    <Members>
+      <Property Name="Analog_MRID" Hidden="true" />
+      <Property Name="MeasurementValueSource_MRID" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <HashCode>AgAAABAAAAAAAAAAAAAAAAAAgAAAAIAAAAAgAAAAAAA=</HashCode>
       <FileName>Model\AnalogValue.cs</FileName>
     </TypeIdentifier>
   </Class>
